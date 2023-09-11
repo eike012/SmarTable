@@ -1,5 +1,6 @@
 import cv2 
 import pytesseract
+import numpy as np
 from pytesseract import Output
 
 # get grayscale image
@@ -52,7 +53,7 @@ def match_template(image, template):
     return cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED) 
 
 # img = cv2.imread('a.jpg')
-img = cv2.imread('b.jpg')
+img = cv2.imread('images/alemao.jpeg')
 # img = cv2.imread('155512644_2181467058652361_7748889291517452751_n.jpg')
 
 # h, w, c = img.shape
@@ -73,7 +74,12 @@ print(img_tes)
 d = pytesseract.image_to_data(img, output_type=Output.DICT)
 print(d.keys())
 
-# gray = get_grayscale(img)
-# thresh = thresholding(gray)
-# opening = opening(gray)
-# canny = canny(gray)
+
+gray = get_grayscale(img)
+cv2.imwrite('gray_test.png',gray)
+thresh = thresholding(gray)
+cv2.imwrite('thresh_test.png',thresh)
+open = opening(gray)
+cv2.imwrite('opening_test.png',open)
+can = canny(gray)
+cv2.imwrite('canny_test.png',can)
