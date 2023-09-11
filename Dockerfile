@@ -10,5 +10,4 @@ COPY . /app
 
 COPY requirements.txt /app
 RUN pip install --trusted-host pypi.python.org --no-cache -r requirements.txt
-
 RUN apt install vim
