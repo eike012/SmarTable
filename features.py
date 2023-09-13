@@ -14,22 +14,15 @@ def removeNoise(image):
  
 # Thresholding
 def thresholding(image):
-    return cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
-
-# Dilation
-def dilate(image):
-    kernel = np.ones((5,5),np.uint8)
-    return cv2.dilate(image, kernel, iterations = 1)
-    
-# Erosion
-def erode(image):
-    kernel = np.ones((5,5),np.uint8)
-    return cv2.erode(image, kernel, iterations = 1)
+    return cv2.adaptiveThreshold(image,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
+            cv2.THRESH_BINARY,11,2)
 
 # Opening - erosion followed by dilation
 def opening(image):
-    kernel = np.ones((5,5),np.uint8)
-    return cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel)
+    kernel = np.ones((1, 1), np.uint8)
+    img = cv2.erode(image, kernel, iterations=1)
+    img = cv2.dilate(image, kernel, iterations=1)
+    return img
 
 # Canny edge detection
 def canny(image):
@@ -55,21 +48,20 @@ def matchTemplate(image, template):
 
 # Pre-process image
 def preProcess(img):
+    img = cv2.GaussianBlur(img, (5, 5), 0)
     gray = getGrayScale(img)
     cv2.imwrite('tests/gray.png',gray)
     deskewed = deskew(gray)
     cv2.imwrite('tests/deskewed.png',deskewed)
     denoised = removeNoise(deskewed)
     cv2.imwrite('tests/denoised.png',denoised)
-    can = canny(denoised)
-    cv2.imwrite('tests/canny.png',can)
-    thresh = thresholding(denoised)
-    cv2.imwrite('tests/thresh.png',thresh)
-    dilated = dilate(denoised)
-    cv2.imwrite('tests/dilated.png',dilated)
     open = opening(denoised)
     cv2.imwrite('tests/opening.png',open)
-    return denoised
+    thresh = thresholding(open)
+    cv2.imwrite('tests/thresh.png',thresh)
+    can = canny(thresh)
+    cv2.imwrite('tests/canny.png',can)
+    return thresh
 
 # Show boxes of text of image
 def showBoxes(img):
@@ -82,13 +74,15 @@ def showBoxes(img):
     cv2.imshow('img', img)
     cv2.waitKey(0)
 
+# Apply the Tesseract OCR for the provided image
+def applyTesseract(img):
     # Adding custom options
-    custom_config = r'-l por --oem 3 --psm 6'
+    print("\n------------------------------ Applying Tesseract -----------------------------------------\n\n")
+    custom_config = r'-l por --oem 1 --psm 5'
     img_tes = pytesseract.image_to_string(img, config=custom_config)
     print(img_tes)
 
     d = pytesseract.image_to_data(img, lang = 'por', output_type=Output.DICT)
-    print(d.keys())
 
 img_a = cv2.imread('images/a.jpg')
 img_alemao = cv2.imread('images/alemao.jpeg')
@@ -96,14 +90,14 @@ img_b = cv2.imread('images/b.jpg')
 img_c = cv2.imread('images/c.jpg')
 
 image = preProcess(img_a)
-showBoxes(image)
+applyTesseract(image)
+#showBoxes(image)
 image = preProcess(img_alemao)
-showBoxes(image)
+applyTesseract(image)
+#showBoxes(image)
 image = preProcess(img_b)
-showBoxes(image)
+applyTesseract(image)
+#showBoxes(image)
 image = preProcess(img_c)
-showBoxes(image)
-
-img_template = matchTemplate(img_c, img_b)
-cv2.imshow('img', img_template)
-cv2.waitKey(0)
+applyTesseract(image)
+#showBoxes(image)
