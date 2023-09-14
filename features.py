@@ -1,7 +1,8 @@
 import cv2 
 import pytesseract
 import numpy as np
-from pytesseract import Output
+from PIL import Image, ImageDraw
+import easyocr
 
 # Get grayscale image
 def getGrayScale(image):
@@ -20,7 +21,7 @@ def thresholding(image):
 # Opening - erosion followed by dilation
 def opening(image):
     kernel = np.ones((1, 1), np.uint8)
-    img = cv2.erode(image, kernel, iterations=1)
+    img = cv2.erode(image, kernel, iterations=6)
     img = cv2.dilate(image, kernel, iterations=1)
     return img
 
@@ -44,60 +45,86 @@ def deskew(image):
 
 # Template matching
 def matchTemplate(image, template):
-    return cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED) 
+    return cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED)     
 
 # Pre-process image
 def preProcess(img):
-    img = cv2.GaussianBlur(img, (5, 5), 0)
-    gray = getGrayScale(img)
+    image = cv2.imread(img)
+    gray = getGrayScale(image)
     cv2.imwrite('tests/gray.png',gray)
-    deskewed = deskew(gray)
+    # gray = cv2.rotate(gray, cv2.ROTATE_90_CLOCKWISE)
+    deskewed = gray
     cv2.imwrite('tests/deskewed.png',deskewed)
     denoised = removeNoise(deskewed)
     cv2.imwrite('tests/denoised.png',denoised)
     open = opening(denoised)
     cv2.imwrite('tests/opening.png',open)
     thresh = thresholding(open)
-    cv2.imwrite('tests/thresh.png',thresh)
+    cv2.imwrite('images/image.png',denoised)
     can = canny(thresh)
     cv2.imwrite('tests/canny.png',can)
     return thresh
 
+def teste1PreProcess(img):
+    image = cv2.imread(img)
+    gray = getGrayScale(image)
+    denoised = removeNoise(gray)
+    open = opening(denoised)
+    thresh = thresholding(open)
+    cv2.imwrite('images/image.png', thresh)
+    return open    
+
+def rotate(img):
+    endereco_teste = 'teste.png'
+    for angle in range(-5,+5,2):
+        img2 = img.rotate(angle)
+        img2.save(endereco_teste)
+        img2.show()
+        results = processImageWithEasyOCR(endereco_teste)
+        showBoxes(endereco_teste,results)
+
 # Show boxes of text of image
-def showBoxes(img):
-    h, w = img.shape
-    boxes = pytesseract.image_to_boxes(img) 
-    for b in boxes.splitlines():
-        b = b.split(' ')
-        img = cv2.rectangle(img, (int(b[1]), h - int(b[2])), (int(b[3]), h - int(b[4])), (0, 255, 0), 2)
+def showBoxes(img, bounds, color="yellow", width=2):
+    image = Image.open(img)
+    draw = ImageDraw.Draw(image)
+    for bound in bounds:
+        p0, p1, p2 , p3 = bound[0]
+        draw.line([*p0, *p1, *p2, *p3, *p0], fill=color, width=width)
+    
+    image.show()
 
-    cv2.imshow('img', img)
-    cv2.waitKey(0)
+def processImageWithEasyOCR(img):
+    # Initialize EasyOCR reader
+    reader = easyocr.Reader(['pt'])
 
-# Apply the Tesseract OCR for the provided image
-def applyTesseract(img):
-    # Adding custom options
-    print("\n------------------------------ Applying Tesseract -----------------------------------------\n\n")
-    custom_config = r'-l por --oem 1 --psm 5'
-    img_tes = pytesseract.image_to_string(img, config=custom_config)
-    print(img_tes)
+    # Process the entire image using EasyOCR
+    results = reader.readtext(img)
 
-    d = pytesseract.image_to_data(img, lang = 'por', output_type=Output.DICT)
+    # Print EasyOCR results for the entire image
+    for (bbox, text, prob) in results:
+        print(f"Text: {text}, Confidence: {prob}\n")
+    
+    return results
 
-img_a = cv2.imread('images/a.jpg')
-img_alemao = cv2.imread('images/alemao.jpeg')
-img_b = cv2.imread('images/b.jpg')
-img_c = cv2.imread('images/c.jpg')
+img_a = 'images/a.jpg'
+img_alemao = 'images/alemao.jpeg'
+img_b = 'images/b.jpg'
+img_c = 'images/c.jpg'
+img = 'images/image.png'
+teste_inclinacao = 'teste.jpeg'
 
-image = preProcess(img_a)
-applyTesseract(image)
-#showBoxes(image)
-image = preProcess(img_alemao)
-applyTesseract(image)
-#showBoxes(image)
-image = preProcess(img_b)
-applyTesseract(image)
-#showBoxes(image)
-image = preProcess(img_c)
-applyTesseract(image)
-#showBoxes(image)
+# preProcess(img_alemao)
+results = processImageWithEasyOCR(img_a)
+showBoxes(img_a, results)
+# results = processImageWithEasyOCR(img_alemao)
+# showBoxes(img_alemao, results)
+# results = processImageWithEasyOCR(img_b)
+# showBoxes(img_b, results)
+# results = processImageWithEasyOCR(img_c)
+# showBoxes(img_c, results)
+# teste1PreProcess(img_b)
+# alemaoOriginal = processImageWithEasyOCR(img_b)
+# showBoxes(img_b, alemaoOriginal)
+
+# image = Image.open(img_alemao)
+# rotate(image, img_alemao)
