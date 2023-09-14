@@ -1,7 +1,7 @@
 import cv2 
 import pytesseract
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
 import easyocr
 
 # Get grayscale image
@@ -21,7 +21,7 @@ def thresholding(image):
 # Opening - erosion followed by dilation
 def opening(image):
     kernel = np.ones((1, 1), np.uint8)
-    img = cv2.erode(image, kernel, iterations=1)
+    img = cv2.erode(image, kernel, iterations=6)
     img = cv2.dilate(image, kernel, iterations=1)
     return img
 
@@ -49,7 +49,8 @@ def matchTemplate(image, template):
 
 # Pre-process image
 def preProcess(img):
-    gray = getGrayScale(img)
+    image = cv2.imread(img)
+    gray = getGrayScale(image)
     cv2.imwrite('tests/gray.png',gray)
     # gray = cv2.rotate(gray, cv2.ROTATE_90_CLOCKWISE)
     deskewed = gray
@@ -59,10 +60,28 @@ def preProcess(img):
     open = opening(denoised)
     cv2.imwrite('tests/opening.png',open)
     thresh = thresholding(open)
-    cv2.imwrite('tests/thresh.png',thresh)
+    cv2.imwrite('images/image.png',denoised)
     can = canny(thresh)
     cv2.imwrite('tests/canny.png',can)
     return thresh
+
+def teste1PreProcess(img):
+    image = cv2.imread(img)
+    gray = getGrayScale(image)
+    denoised = removeNoise(gray)
+    open = opening(denoised)
+    thresh = thresholding(open)
+    cv2.imwrite('images/image.png', thresh)
+    return open    
+
+def rotate(img):
+    endereco_teste = 'teste.png'
+    for angle in range(-5,+5,2):
+        img2 = img.rotate(angle)
+        img2.save(endereco_teste)
+        img2.show()
+        results = processImageWithEasyOCR(endereco_teste)
+        showBoxes(endereco_teste,results)
 
 # Show boxes of text of image
 def showBoxes(img, bounds, color="yellow", width=2):
@@ -83,7 +102,7 @@ def processImageWithEasyOCR(img):
 
     # Print EasyOCR results for the entire image
     for (bbox, text, prob) in results:
-        print(text)
+        print(f"Text: {text}, Confidence: {prob}\n")
     
     return results
 
@@ -91,14 +110,21 @@ img_a = 'images/a.jpg'
 img_alemao = 'images/alemao.jpeg'
 img_b = 'images/b.jpg'
 img_c = 'images/c.jpg'
+img = 'images/image.png'
+teste_inclinacao = 'teste.jpeg'
 
-
-# image = preProcess(img_a)
+# preProcess(img_alemao)
 results = processImageWithEasyOCR(img_a)
 showBoxes(img_a, results)
-results = processImageWithEasyOCR(img_alemao)
-showBoxes(img_alemao, results)
-results = processImageWithEasyOCR(img_b)
-showBoxes(img_b, results)
-results = processImageWithEasyOCR(img_c)
-showBoxes(img_c, results)
+# results = processImageWithEasyOCR(img_alemao)
+# showBoxes(img_alemao, results)
+# results = processImageWithEasyOCR(img_b)
+# showBoxes(img_b, results)
+# results = processImageWithEasyOCR(img_c)
+# showBoxes(img_c, results)
+# teste1PreProcess(img_b)
+# alemaoOriginal = processImageWithEasyOCR(img_b)
+# showBoxes(img_b, alemaoOriginal)
+
+# image = Image.open(img_alemao)
+# rotate(image, img_alemao)
