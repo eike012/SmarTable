@@ -23,8 +23,8 @@ def thresholding(image):
 # Opening - erosion followed by dilation
 def opening(image):
     kernel = np.ones((1, 1), np.uint8)
-    img = cv2.erode(image, kernel, iterations=1)
-    img = cv2.dilate(image, kernel, iterations=1)
+ #   img = cv2.erode(image, kernel, iterations=1)
+    img = cv2.dilate(image, kernel, iterations=200)
     return img
 
 # Canny edge detection
@@ -51,20 +51,21 @@ def matchTemplate(image, template):
 
 # Pre-process image
 def preProcess(img):
-    img = cv2.GaussianBlur(img, (5, 5), 0)
-    gray = getGrayScale(img)
-    cv2.imwrite('tests/gray.png',gray)
-    deskewed = deskew(gray)
-    cv2.imwrite('tests/deskewed.png',deskewed)
-    denoised = removeNoise(deskewed)
-    cv2.imwrite('tests/denoised.png',denoised)
-    open = opening(denoised)
-    cv2.imwrite('tests/opening.png',open)
-    thresh = thresholding(open)
-    cv2.imwrite('tests/thresh.png',thresh)
-    can = canny(thresh)
-    cv2.imwrite('tests/canny.png',can)
-    return thresh
+    #img = cv2.GaussianBlur(img, (3, 3), 0)
+    #gray = getGrayScale(img)
+    #cv2.imwrite('tests/gray.png',gray)
+    # deskewed = deskew(gray)
+    # cv2.imwrite('tests/deskewed.png',deskewed)
+    #denoised = removeNoise(gray)
+    #cv2.imwrite('tests/denoised.png',denoised)
+    open = opening(img)
+    cv2.imwrite('tests/dilated.png', open)
+    # cv2.imwrite('tests/opening.png',open)
+    # thresh = thresholding(open)
+    # cv2.imwrite('tests/thresh.png',thresh)
+    # can = canny(thresh)
+    # cv2.imwrite('tests/canny.png',can)
+    return open
 
 # Show boxes of text of image
 def showBoxes(img):
@@ -95,7 +96,20 @@ img_c = cv2.imread('images/c.jpg')
 plt.imshow(img_alemao[:,:,::-1])
 plt.axis('off')
 
+#applyTesseract(img_alemao)
+
 # func to apply transformation and visualize the result
+
+def rotate(img_lida):
+    endereco_teste = 'teste.png'
+    img = Image.open(img_lida)
+    angle = 4
+    img2 = img.rotate(angle)
+    img2.save(endereco_teste)
+    img2.show()
+    results = avgPrecisionProcessImageWithEasyOCR(endereco_teste)
+    showBoxes(endereco_teste,results)
+
 def perform_Transformation(image, M):
     """
     Takes in input image and the transformation matrix 
@@ -106,19 +120,53 @@ def perform_Transformation(image, M):
     dst = cv2.warpAffine(image,M,(cols,rows))
     cv2.imwrite('alemao_rotado.jpg', dst)
     
-    #plt.figure(figsize = (24,8))
-    #plt.subplot(121); plt.imshow(image[:,:,::-1]); plt.axis('off'); plt.title('Original Image')
+
+# M = np.float32([[1,0.02,0],
+                # [-0.01,1,0]])
+# 
+# perform_Transformation(img_alemao, M)
+
+def avgPrecisionProcessImageWithEasyOCR(img):
+    # Initialize EasyOCR reader
+    reader = easyocr.Reader(['pt'])
+
+    # Process the entire image using EasyOCR
+    results = reader.readtext(img)
+
+    # Print EasyOCR results for the entire image
+    prob_total = 0
+    total_de_probs = 0
+    for (bbox, text, prob) in results:
+        print(f"Text: {text}, Confidence: {prob}\n")
+        prob_total += prob
+        total_de_probs += 1
     
-#    plt.subplot(122); plt.imshow(dst[:,:,::-1]); plt.axis('off'); plt.title("Transformed Image")
-    #plt.subplot(122); plt.imshow(dst[:,:,::-1]); #plt.axis('off'); plt.title("Transformed Image")    
-    #plt.show()
+    media = prob_total/total_de_probs
+    print("media: ", media)
 
-M = np.float32([[1,0.02,0],
-                [-0.02,1,0]])
+    return prob_total/total_de_probs
+
+def projectTransformation(img):
+    image = cv2.imread(img)
+    num_cols = image.shape[0]
+    num_rows = image.shape[1]
+    src_points = np.float32([[0,0], [num_cols-1,0], [0,num_rows-1], [num_cols-1,num_rows-1]])
+    dst_points = np.float32([[0,0], [int(0.999*(num_cols-1)),0], [0,num_rows-1], [num_cols-1,num_rows-1]])
+    projective_matrix = cv2.getPerspectiveTransform(src_points, dst_points)
+    img_protran = cv2.warpPerspective(image, projective_matrix, (num_cols,num_rows))
+    cv2.imwrite('alemao_trap.jpg', img_protran)
 
 
-perform_Transformation(img_alemao, M)
-
+#image = preProcess(img_alemao)
+#processImageWithEasyOCR('tests/dilated.png')
+#imagegrayScale = getGrayScale('images/alemao.jpeg')
+#cv2.imwrite('grayScaleimage.jpg', imagegrayScale)
+#image = removeNoise('grayScaleimage.jpg')
+#cv2.imwrite('denoised_alemao.jpg', image)
+#projectTransformation('images/alemao.jpeg')
+#testaPrecisaoEasyOCR('images/alemao.jpeg')
+#processImageWithEasyOCR('alemao_trap.jpg')
+#rotate('images/alemao.jpeg')
 # image = preProcess(img_a)
 # applyTesseract(image)
 # #showBoxes(image)
