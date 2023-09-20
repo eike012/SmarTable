@@ -14,19 +14,23 @@ def getGrayScale(image):
 def removeNoise(image):
     return cv2.fastNlMeansDenoising(image, None, 10, 7, 21)
 
- 
 # Thresholding
-def thresholding(image):
-    return cv2.adaptiveThreshold(image,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
+def thresholding(grayScaleImage):
+    image = cv2.adaptiveThreshold(grayScaleImage,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
             cv2.THRESH_BINARY,11,2)
+    return image
 
 # Opening - erosion followed by dilation
-def opening(image):
+def dilate(image):
     kernel = np.ones((1, 1), np.uint8)
- #   img = cv2.erode(image, kernel, iterations=1)
     img = cv2.dilate(image, kernel, iterations=200)
     return img
 
+def erode(image):
+    kernel = np.ones((1, 1), np.uint8)
+    img = cv2.erode(image, kernel, iterations=1)
+    return img
+  
 # Canny edge detection
 def canny(image):
     return cv2.Canny(image, 100, 200)
@@ -58,8 +62,9 @@ def preProcess(img):
     # cv2.imwrite('tests/deskewed.png',deskewed)
     #denoised = removeNoise(gray)
     #cv2.imwrite('tests/denoised.png',denoised)
-    open = opening(img)
-    cv2.imwrite('tests/dilated.png', open)
+    eroded = erode(img)
+    dilated = dilate(eroded)
+    cv2.imwrite('tests/dilated_eroded.png', dilated)
     # cv2.imwrite('tests/opening.png',open)
     # thresh = thresholding(open)
     # cv2.imwrite('tests/thresh.png',thresh)
@@ -155,7 +160,6 @@ def projectTransformation(img):
     projective_matrix = cv2.getPerspectiveTransform(src_points, dst_points)
     img_protran = cv2.warpPerspective(image, projective_matrix, (num_cols,num_rows))
     cv2.imwrite('alemao_trap.jpg', img_protran)
-
 
 #image = preProcess(img_alemao)
 #processImageWithEasyOCR('tests/dilated.png')
