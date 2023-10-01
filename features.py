@@ -83,6 +83,10 @@ def showBoxes(img):
     cv2.imshow('img', img)
     cv2.waitKey(0)
 
+#applyTesseract(img_alemao)
+
+# func to apply transformation and visualize the result
+
 # Apply the Tesseract OCR for the provided image
 def applyTesseract(img):
     # Adding custom options
@@ -93,17 +97,14 @@ def applyTesseract(img):
 
     d = pytesseract.image_to_data(img, lang = 'por', output_type=Output.DICT)
 
-#img_a = cv2.imread('images/a.jpg')
-img_alemao = cv2.imread('tests/pastelaria.jpg')
-#img_b = cv2.imread('images/b.jpg')
-#img_c = cv2.imread('images/c.jpg')
+img_a = cv2.imread('images/a.jpg')
+img_alemao = cv2.imread('images/alemao.jpeg')
+img_b = cv2.imread('images/b.jpg')
+img_c = cv2.imread('images/c.jpg')
 
 #plt.imshow(img_alemao[:,:,::-1])
 #plt.axis('off')
 
-#applyTesseract(img_alemao)
-
-# func to apply transformation and visualize the result
 
 #detectBorder
 
@@ -204,4 +205,4 @@ def projectTransformation(img):
 #image = preProcess(img_c)
 #applyTesseract(image)
 #showBoxes(image)
-detectBorder(img_alemao)
+#detectBorder(img_alemao)
