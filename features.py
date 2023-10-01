@@ -93,17 +93,38 @@ def applyTesseract(img):
 
     d = pytesseract.image_to_data(img, lang = 'por', output_type=Output.DICT)
 
-img_a = cv2.imread('images/a.jpg')
-img_alemao = cv2.imread('images/alemao.jpeg')
-img_b = cv2.imread('images/b.jpg')
-img_c = cv2.imread('images/c.jpg')
+#img_a = cv2.imread('images/a.jpg')
+img_alemao = cv2.imread('tests/pastelaria.jpg')
+#img_b = cv2.imread('images/b.jpg')
+#img_c = cv2.imread('images/c.jpg')
 
-plt.imshow(img_alemao[:,:,::-1])
-plt.axis('off')
+#plt.imshow(img_alemao[:,:,::-1])
+#plt.axis('off')
 
 #applyTesseract(img_alemao)
 
 # func to apply transformation and visualize the result
+
+#detectBorder
+
+#function that gets an image and saves another one with the most external border drawn
+
+def detectBorder(imageRead):
+    imageRead = getGrayScale(imageRead)
+    ret, thresh = cv2.threshold(imageRead,127,255,0)
+    contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    area = 0
+    for contour in contours:
+        if cv2.contourArea(contour) > area:
+            finalContour = contour
+        
+    
+    cv2.drawContours(imageRead, [finalContour], 0, (0,255,0), 3)
+    cv2.imwrite('tests/imageDrawnContour.jpg', imageRead)
+    
+
+
 
 def rotate(img_lida):
     endereco_teste = 'teste.png'
@@ -183,3 +204,4 @@ def projectTransformation(img):
 #image = preProcess(img_c)
 #applyTesseract(image)
 #showBoxes(image)
+detectBorder(img_alemao)
