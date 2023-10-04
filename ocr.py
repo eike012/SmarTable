@@ -99,3 +99,17 @@ def processImageWithTesseractOCR(image_path, coordinates, dic):
         final_text += new_test
 
     return final_text
+
+#Return the width of easyOCR boxes
+def arrayWidthOfBoxes(bounds):
+    boundsLength = len(bounds)
+    arrayWidth = []
+    
+    for i in range(boundsLength):
+        p0, p1, p2, p3 = bounds[i][0]
+        width_superior = p1[0] -  p0[0]
+        width_inferior = p2[0] - p3[0]
+        width = (width_superior + width_inferior)/2
+        arrayWidth.append(width)
+      
+    return arrayWidth    
