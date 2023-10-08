@@ -5,3 +5,6 @@
 *.gif
 *.bmp
 *.svg
+
+#ignore text files
+*.txt

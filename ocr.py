@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw
 import quicksort as qs
 import preprocess as pp
 
-img = 'images/image.png'
+img = 'images/c.jpg'
 
 # Show boxes of text of image
 def showBoxes(img, bounds, color="yellow", width=2):
@@ -80,6 +80,9 @@ def processImageWithEasyOCR(img):
         coordinates.append([x_coordinates,y_coordinates])
 
     text = processImageWithTesseractOCR(img, coordinates, dic)
+    output_file = 'output.txt'
+    with open(output_file, 'w', encoding='utf8') as file:
+        file.write(text)
     
     return results, probMean/len(results), text
 
@@ -112,4 +115,6 @@ def arrayWidthOfBoxes(bounds):
         width = (width_superior + width_inferior)/2
         arrayWidth.append(width)
       
-    return arrayWidth    
+    return arrayWidth
+
+processImageWithEasyOCR(img)
