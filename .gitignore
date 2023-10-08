@@ -6,5 +6,6 @@
 *.bmp
 *.svg
 
-#ignore text files
+#ignore text based files
 *.txt
+*.csv
