@@ -26,6 +26,13 @@ def checkImageQuality(image):
     showBoxes(img, results)
     print(text)
     print(confidence)
+    print("Width:\n")
+    print(arrayWidthOfBoxes(results))
+    print("Height:\n")
+    print(arrayHeightOfBoxes(results))
+    print("Area:\n")
+    print(arrayAreaOfBoxes(results))
+
     return results, confidence
 
 # Add missing words to the dictionary
