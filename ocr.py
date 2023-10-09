@@ -103,18 +103,44 @@ def processImageWithTesseractOCR(image_path, coordinates, dic):
 
     return final_text
 
-#Return the width of easyOCR boxes
+#Return the width of easyOCR boxes as an array
 def arrayWidthOfBoxes(bounds):
     boundsLength = len(bounds)
     arrayWidth = []
     
     for i in range(boundsLength):
         p0, p1, p2, p3 = bounds[i][0]
-        width_superior = p1[0] -  p0[0]
-        width_inferior = p2[0] - p3[0]
+        width_superior = sqrt(((p1[0] -  p0[0])**2) + ((p1[1] - p0[1])**2))
+        width_inferior = sqrt(((p2[0] -  p3[0])**2) + ((p2[1] - p3[1])**2))
         width = (width_superior + width_inferior)/2
         arrayWidth.append(width)
       
-    return arrayWidth
+    return arrayWidth    
 
-processImageWithEasyOCR(img)
+#Return the height of easyOCR boxes as an array
+def arrayHeightOfBoxes(bounds):
+    boundsLength = len(bounds)
+    arrayHeight = []
+    
+    for i in range(boundsLength):
+        p0, p1, p2, p3 = bounds[i][0]
+        height_right = sqrt(((p2[0] -  p1[0])**2) + ((p2[1] - p1[1])**2))
+        height_left = sqrt(((p0[0] -  p3[0])**2) + ((p0[1] - p3[1])**2))
+        height = (height_right + height_left)/2
+        arrayHeight.append(height)
+      
+    return arrayHeight  
+
+#Return the area of easyOCR boxes as an array
+def arrayAreaOfBoxes(bounds):
+    arrayHeight = arrayAreaOfBoxes(bounds)
+    arrayWidth = arrayWidthOfBoxes(bounds)
+    arrayArea = []
+
+    for i in range(len(arrayHeight)):
+        area = arrayHeight[i]*arrayWidth[i]
+        arrayArea.append(area)
+
+    return arrayArea
+    
+checkImageQuality(img)
