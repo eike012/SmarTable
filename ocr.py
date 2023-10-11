@@ -7,6 +7,7 @@ from PIL import Image, ImageDraw
 import quicksort as qs
 import preprocess as pp
 import math
+import kmeans
 
 img = 'images/c.jpg'
 
@@ -28,11 +29,20 @@ def checkImageQuality(image):
     print(text)
     print(confidence)
     print("Width:\n")
-    print(arrayWidthOfBoxes(results))
+    arraywidth = arrayWidthOfBoxes(results)
+    print(arraywidth)
     print("Height:\n")
-    print(arrayHeightOfBoxes(results))
+    arrayheight = arrayHeightOfBoxes(results)
+    print(arrayheight)
     print("Area:\n")
-    print(arrayAreaOfBoxes(results))
+    arrayarea = arrayAreaOfBoxes(results)
+    print(arrayarea)
+    print("Kmeans of width:\n")
+    print(kmeans.kmeansOfArray1D(arraywidth))
+    print("Kmeans of height:\n")
+    print(kmeans.kmeansOfArray1D(arrayheight))
+    print("Kmeans of area:\n")
+    print(kmeans.kmeansOfArray1D(arrayarea))
 
     return results, confidence
 
@@ -61,8 +71,8 @@ def checkGrammar(text, dic):
             else:
                 suggestions = dic.suggest(word)
                 if suggestions != None:
-                    print(f"'{word}' is spelled incorrectly. Suggestions: {', '.join(suggestions)}")
-                # words[index] = suggestions[0]
+                    #print(f"'{word}' is spelled incorrectly. Suggestions: {', '.join(suggestions)}")
+                    words[index] = suggestions[0]
             if word == "RS":
                 word = word.replace('RS','R$')
 
