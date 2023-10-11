@@ -12,7 +12,7 @@ stopWords_pt = set(stopwords.words('portuguese'))
 
 data = pd.read_csv('dataset.csv')
 
-tfidf_vectorizer = TfidfVectorizer(max_features=1000, stop_words=stopWords_pt)
+tfidf_vectorizer = TfidfVectorizer(max_features=1000, stop_words=list(stopWords_pt))
 X = tfidf_vectorizer.fit_transform(data['Text'])
 
 X_train, X_test, y_train, y_test = train_test_split(X, data['Category'], test_size=0.2, random_state=42)
