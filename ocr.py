@@ -6,6 +6,7 @@ import cv2
 from PIL import Image, ImageDraw
 import quicksort as qs
 import preprocess as pp
+import math
 
 img = 'images/c.jpg'
 
@@ -117,8 +118,8 @@ def arrayWidthOfBoxes(bounds):
     
     for i in range(boundsLength):
         p0, p1, p2, p3 = bounds[i][0]
-        width_superior = sqrt(((p1[0] -  p0[0])**2) + ((p1[1] - p0[1])**2))
-        width_inferior = sqrt(((p2[0] -  p3[0])**2) + ((p2[1] - p3[1])**2))
+        width_superior = math.sqrt(((p1[0] -  p0[0])**2) + ((p1[1] - p0[1])**2))
+        width_inferior = math.sqrt(((p2[0] -  p3[0])**2) + ((p2[1] - p3[1])**2))
         width = (width_superior + width_inferior)/2
         arrayWidth.append(width)
       
@@ -131,8 +132,8 @@ def arrayHeightOfBoxes(bounds):
     
     for i in range(boundsLength):
         p0, p1, p2, p3 = bounds[i][0]
-        height_right = sqrt(((p2[0] -  p1[0])**2) + ((p2[1] - p1[1])**2))
-        height_left = sqrt(((p0[0] -  p3[0])**2) + ((p0[1] - p3[1])**2))
+        height_right = math.sqrt(((p2[0] -  p1[0])**2) + ((p2[1] - p1[1])**2))
+        height_left = math.sqrt(((p0[0] -  p3[0])**2) + ((p0[1] - p3[1])**2))
         height = (height_right + height_left)/2
         arrayHeight.append(height)
       
@@ -140,7 +141,7 @@ def arrayHeightOfBoxes(bounds):
 
 #Return the area of easyOCR boxes as an array
 def arrayAreaOfBoxes(bounds):
-    arrayHeight = arrayAreaOfBoxes(bounds)
+    arrayHeight = arrayHeightOfBoxes(bounds)
     arrayWidth = arrayWidthOfBoxes(bounds)
     arrayArea = []
 
