@@ -2,8 +2,7 @@ numpy
 opencv-python
 pytesseract
 easyocr
-<<<<<<< Updated upstream
 pillow
-=======
-enchant
->>>>>>> Stashed changes
+pyenchant
+scikit-learn
+nktk
