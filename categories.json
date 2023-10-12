@@ -1,0 +1,42 @@
+[
+    [
+        {
+            "Title": "CAIPIRA 1",
+            "Recipe": "Frango desfiado, milho e catupiry",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 34,00"
+        }
+    ],
+    [
+        {
+            "Title": "CAIPIRA 2",
+            "Recipe": "Frango desfiado, milho e mussarela",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 34,00"
+        }
+    ],
+    [
+        {
+            "Title": "ESCAROLA",
+            "Recipe": "Escarola, bacon e mussarela",
+            "Price 1": "R$ 23,00",
+            "Price 2": "R$ 31,00"
+        }
+    ],
+    [
+        {
+            "Title": "FRANCESA",
+            "Recipe": "Presunto, palmito, cebola e mussarela",
+            "Price 1": "R$ 33,00",
+            "Price 2": "R$ 24,00"
+        }
+    ],
+    [
+        {
+            "Title": "FRANGO COM CATUPIRY",
+            "Recipe": "Frango desfiado e catupiry",
+            "Price 1": "R$ 33,00",
+            "Price 2": "R$ 24,00"
+        }
+    ]
+]

@@ -2,6 +2,9 @@ import re
 import enchant
 import easyocr
 import pytesseract
+import logisticRegression as lr
+import joblib
+import json
 import cv2
 from PIL import Image, ImageDraw
 import quicksort as qs
@@ -9,7 +12,7 @@ import preprocess as pp
 import math
 import kmeans
 
-img = 'images/c.jpg'
+img = 'images/image.png'
 
 # Show boxes of text of image
 def showBoxes(img, bounds, color="yellow", width=2):
@@ -24,9 +27,8 @@ def showBoxes(img, bounds, color="yellow", width=2):
 # Get results from the image
 def checkImageQuality(image):
     pp.preProcess(image)
-    results, confidence, text = processImageWithEasyOCR(img)
+    results, confidence = processImageWithEasyOCR(img)
     showBoxes(img, results)
-    print(text)
     print(confidence)
     print("Width:\n")
     arraywidth = arrayWidthOfBoxes(results)
@@ -67,12 +69,14 @@ def checkGrammar(text, dic):
     for index, word in enumerate(words):
         if word != '' and not word.isnumeric():
             if  dic.check(word):
-                print(f"'{word}' is spelled correctly.")
+                # print(f"'{word}' is spelled correctly.")
+                pass
             else:
                 suggestions = dic.suggest(word)
                 if suggestions != None:
                     #print(f"'{word}' is spelled incorrectly. Suggestions: {', '.join(suggestions)}")
-                    words[index] = suggestions[0]
+                    # words[index] = suggestions[0]
+                    pass
             if word == "RS":
                 word = word.replace('RS','R$')
 
@@ -102,7 +106,7 @@ def processImageWithEasyOCR(img):
     with open(output_file, 'w', encoding='utf8') as file:
         file.write(text)
     
-    return results, probMean/len(results), text
+    return results, probMean/len(results)
 
 # Process individual images using TesseractOCR
 def processImageWithTesseractOCR(image_path, coordinates, dic):
@@ -111,15 +115,61 @@ def processImageWithTesseractOCR(image_path, coordinates, dic):
 
     final_text = ''
     qs.quickSort(coordinates, 0, len(coordinates)-1)
+    element_array = []
 
     for x, y in coordinates:
         cropped_image = img[y[0]:y[1],x[0]:x[1]]
 
         text = pytesseract.image_to_string(cropped_image, config=custom_config)
-        new_test = checkGrammar(text, dic)
-        final_text += new_test
+        new_text = checkGrammar(text, dic)
+        new_text = re.sub(r'\s+', ' ', new_text.strip())
 
+        element_array.append(new_text)
+        final_text += new_text + " "
+
+    createJson(element_array)
     return final_text
+
+def resetCategories():
+    return "","",[]
+
+def returnData(title, recipe, prices):
+    output_data = []
+    output_dict = {"Title": title, "Recipe": recipe}
+    index = 1
+    for price in prices:
+        output_dict[f"Price {index}"] = price
+        index += 1
+    output_data.append(output_dict.copy())
+    return output_data
+
+def createJson(array):
+    json_path = "categories.json"
+    output = []
+    lr.train()
+    title, recipe, prices = resetCategories()
+    classifier = joblib.load('classifier.pkl')
+    for text in array:
+        text_vectorized = lr.tfidf_vectorizer.transform([text])
+        category = classifier.predict(text_vectorized)
+        print(f"Predicted Category for {text}: {category[0]}")
+        if category == "Title":
+            if title != "":
+                recipe = text + " "
+                continue
+            else: 
+                title = text
+        elif category == "Recipe":
+            recipe += text
+        else:
+            prices.append(text)
+        if title != "" and recipe != "" and len(prices) != 0:
+            output_data = returnData(title, recipe, prices)
+            output.append(output_data)
+            title, recipe, prices = resetCategories()
+    
+    with open(json_path, 'w') as json_file:
+        json.dump(output, json_file, indent=4)
 
 #Return the width of easyOCR boxes as an array
 def arrayWidthOfBoxes(bounds):
