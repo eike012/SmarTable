@@ -130,9 +130,11 @@ def processImageWithTesseractOCR(image_path, coordinates, dic):
     createJson(element_array)
     return final_text
 
+# Reset title, recipe and prices variables
 def resetCategories():
     return "","",[]
 
+# Return output data to insert into the json file
 def returnData(title, recipe, prices):
     output_data = []
     output_dict = {"Title": title, "Recipe": recipe}
@@ -143,6 +145,7 @@ def returnData(title, recipe, prices):
     output_data.append(output_dict.copy())
     return output_data
 
+# Create json file to have each item in the menu
 def createJson(array):
     json_path = "categories.json"
     output = []
@@ -171,7 +174,7 @@ def createJson(array):
     with open(json_path, 'w') as json_file:
         json.dump(output, json_file, indent=4)
 
-#Return the width of easyOCR boxes as an array
+# Return the width of easyOCR boxes as an array
 def arrayWidthOfBoxes(bounds):
     boundsLength = len(bounds)
     arrayWidth = []
@@ -185,7 +188,7 @@ def arrayWidthOfBoxes(bounds):
       
     return arrayWidth    
 
-#Return the height of easyOCR boxes as an array
+# Return the height of easyOCR boxes as an array
 def arrayHeightOfBoxes(bounds):
     boundsLength = len(bounds)
     arrayHeight = []
@@ -199,7 +202,7 @@ def arrayHeightOfBoxes(bounds):
       
     return arrayHeight  
 
-#Return the area of easyOCR boxes as an array
+# Return the area of easyOCR boxes as an array
 def arrayAreaOfBoxes(bounds):
     arrayHeight = arrayHeightOfBoxes(bounds)
     arrayWidth = arrayWidthOfBoxes(bounds)
@@ -211,4 +214,3 @@ def arrayAreaOfBoxes(bounds):
 
     return arrayArea
     
-checkImageQuality(img)
