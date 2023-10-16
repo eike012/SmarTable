@@ -11,6 +11,7 @@ import quicksort as qs
 import preprocess as pp
 import math
 import kmeans
+import stringReader as sr
 
 img = 'images/image.png'
 
@@ -45,6 +46,8 @@ def checkImageQuality(image):
     print(kmeans.kmeansOfArray1D(arrayheight))
     print("Kmeans of area:\n")
     print(kmeans.kmeansOfArray1D(arrayarea))
+    print("Lowercase ratio:\n")
+    print(arrayLowerCaseAndNumbers(results))
 
     return results, confidence
 
@@ -213,4 +216,16 @@ def arrayAreaOfBoxes(bounds):
         arrayArea.append(area)
 
     return arrayArea
-    
+
+# Return an array with a tuple = {ratio of lower case letters, quantity of numbers}
+# for each box read by ocr
+def arrayLowerCaseAndNumbers(ocrResults):
+    arrayResult = []
+
+    for box in ocrResults:
+        readString = box[1]
+        tupleResult = [sr.ratioLowerCase(readString), sr.countDollarSignNumbers(readString)]
+        arrayResult.append(tupleResult)
+
+    return arrayResult
+
