@@ -24,6 +24,9 @@ def main():
                 results, confidence = ocr.checkImageQuality(img_b) 
         else:
             choice = 1
+    print("lower case: \n")
+    list = ocr.arrayLowerCaseAndNumbers(results)
+    
         
 if __name__ == "__main__":
          main()

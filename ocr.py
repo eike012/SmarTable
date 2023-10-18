@@ -13,7 +13,7 @@ import math
 import kmeans
 import stringReader as sr
 
-img = 'images/image.png'
+img = 'images/d.jpeg'
 
 # Show boxes of text of image
 def showBoxes(img, bounds, color="yellow", width=2):
@@ -47,8 +47,12 @@ def checkImageQuality(image):
     print("Kmeans of area:\n")
     print(kmeans.kmeansOfArray1D(arrayarea))
     print("Lowercase ratio:\n")
-    print(arrayLowerCaseAndNumbers(results))
-
+    arrayMinusculo = arrayLowerCaseAndNumbers(results)
+    print(arrayMinusculo)
+    print("Labels minuscula + numeros:\n")
+    labels = kmeans.kmeansOfArray2D(arrayMinusculo)
+    for i in range(len(labels)):
+        print(f"Category of {results[i][1]}: {labels[i]}")
     return results, confidence
 
 # Add missing words to the dictionary
@@ -224,8 +228,11 @@ def arrayLowerCaseAndNumbers(ocrResults):
 
     for box in ocrResults:
         readString = box[1]
-        tupleResult = [sr.ratioLowerCase(readString), sr.countDollarSignNumbers(readString)]
+        tupleResult = [sr.ratioLowerCase(readString) * 3, sr.countDollarSignNumbers(readString)]
         arrayResult.append(tupleResult)
 
     return arrayResult
 
+
+
+checkImageQuality(img)
