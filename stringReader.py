@@ -20,6 +20,8 @@ def ratioLowerCase(input_string):
         if character.islower():
             lowerCase += 1
     
+    if totalLetters == 0:
+        return 0
     return lowerCase/totalLetters
 
 def testProgram():

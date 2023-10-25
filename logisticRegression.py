@@ -6,6 +6,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
 from nltk.corpus import stopwords
 
+import nltk
+nltk.download('stopwords')
 
 stopWords_pt = set(stopwords.words('portuguese'))
 data = pd.read_csv('dataset.csv')

@@ -13,7 +13,7 @@ import math
 import kmeans
 import stringReader as sr
 
-img = 'images/d.jpeg'
+img = 'images/c.jpg'
 
 # Show boxes of text of image
 def showBoxes(img, bounds, color="yellow", width=2):
@@ -90,6 +90,13 @@ def checkGrammar(text, dic):
     output = ''.join([value + sep for value, sep in zip(words, re.findall(regex, text))]) + words[-1]
     return output
 
+# Check whether box is going to get used or not
+def checkBox(height, width):
+    if height <= width:
+        return True
+    
+    return False
+
 def processImageWithEasyOCR(img):
     # Initialize EasyOCR reader
     reader = easyocr.Reader(['pt'])
@@ -100,27 +107,28 @@ def processImageWithEasyOCR(img):
     results = reader.readtext(img)
     probMean = 0
 
-    coordinates = []
+    coordinates ,filtered_results = [], []
     # Print EasyOCR results for the entire image
     for (bbox,_, prob) in results:
-        probMean += prob
         x_coordinates = [int(bbox[0][0]),int(bbox[1][0])]
         y_coordinates = [int(bbox[0][1]),int(bbox[2][1])]
-        coordinates.append([x_coordinates,y_coordinates])
-
-    text = processImageWithTesseractOCR(img, coordinates, dic)
-    output_file = 'output.txt'
-    with open(output_file, 'w', encoding='utf8') as file:
-        file.write(text)
+        width = x_coordinates[1] - x_coordinates[0]
+        height = y_coordinates[1] - y_coordinates[0]
     
-    return results, probMean/len(results)
+        if checkBox(height, width):
+            filtered_results.append((bbox, _, prob))
+            probMean += prob
+            coordinates.append([x_coordinates,y_coordinates])
+
+    processImageWithTesseractOCR(img, coordinates, dic)
+    
+    return filtered_results, probMean/len(filtered_results)
 
 # Process individual images using TesseractOCR
 def processImageWithTesseractOCR(image_path, coordinates, dic):
     img = cv2.imread(image_path)
     custom_config = "-l por --oem 3 --psm 6"
 
-    final_text = ''
     qs.quickSort(coordinates, 0, len(coordinates)-1)
     element_array = []
 
@@ -132,10 +140,8 @@ def processImageWithTesseractOCR(image_path, coordinates, dic):
         new_text = re.sub(r'\s+', ' ', new_text.strip())
 
         element_array.append(new_text)
-        final_text += new_text + " "
 
     createJson(element_array)
-    return final_text
 
 # Reset title, recipe and prices variables
 def resetCategories():
@@ -165,7 +171,10 @@ def createJson(array):
         print(f"Predicted Category for {text}: {category[0]}")
         if category == "Title":
             if title != "":
-                recipe = text + " "
+                if sr.ratioLowerCase(text) == 0:
+                    title = text
+                else:
+                    recipe = text + " "
                 continue
             else: 
                 title = text
