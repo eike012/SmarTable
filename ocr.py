@@ -11,9 +11,10 @@ import quicksort as qs
 import preprocess as pp
 import math
 import kmeans
+import statistics
 import stringReader as sr
 
-img = 'images/l.jpg'
+img = 'images/d.jpeg'
 
 # Show boxes of text of image
 def showBoxes(img, bounds, color="yellow", width=2):
@@ -57,57 +58,37 @@ def checkImageQuality(image):
     print(f"\n Number of columns: {numberColumnsImage(results, labels)}")
     return results, confidence
 
-def aroundHeight(height, toCheck):
-    print(height, toCheck)
-    if abs(height - toCheck) < 10:
-        return True
-    return False
-
 def numberColumnsImage(results, labels):
-    
-    # arrayWidth = arrayWidthOfBoxes(results)
-    # averageWidth = averageOfArray(arrayWidth)
 
     for i in range(len(labels)):
         if labels[i] == "Recipe":
             beginningSecondLoop = i
             break
-    
-    numberColumns = 0
-    height = 0
+
+    lastTitle  = -1
+    titlesPerLine = []
+    numberTitles = 0
 
     for j in range(beginningSecondLoop, len(labels)):
-        if labels[j] == "Title"  and numberColumns == 0:
-            height = results[j][0][0]
-            numberColumns += 1
+        if labels[j] == "Title" and results[j][1].isnumeric():
+            continue
         else:
-            if labels[j] == "Title" and not results[j][1].isnumeric() and aroundHeight(height, results[j][0][0]):
-                numberColumns += 1
-
-
-    return numberColumns
-    # lastTitle  = -1
-    # linesRead = 1
-    # numberTitles = 0
-
-    # for j in range(beginningSecondLoop, len(labels)):
-    #     if labels[j] == "Title" and results[j][1].isnumeric():
-    #         continue
-    #     else:
-    #         if labels[j] == "Title" and lastTitle == -1:
-    #             lastTitle = j
-    #             numberTitles += 1
-    #             continue
-    #         if labels[j] == "Title":
-    #             if boxIsNewLine(results[j], results[lastTitle], averageWidth):
-    #                 print(results[lastTitle][1], results[j][1])
-    #                 linesRead += 1
-    #             lastTitle = j
-    #             numberTitles += 1
+            if labels[j] == "Title" and lastTitle == -1:
+                lastTitle = j
+                numberTitles += 1
+                continue
+            if labels[j] == "Title" and not results[j][1].isnumeric():
+                if boxIsNewLine(results[j], results[lastTitle]):
+                    titlesPerLine.append(numberTitles)
+                    numberTitles = 1
+                else:
+                    numberTitles += 1
+                lastTitle = j
                     
-    # print(f"\n total of titles: {numberTitles}")
-    # print(f"\n total of lines: {linesRead}")
-    # return round(numberTitles/linesRead)
+    print(f"\n Total of titles per line: {titlesPerLine}")
+
+    mode = statistics.mode(titlesPerLine)
+    return mode   
 
 
 
@@ -120,17 +101,16 @@ def averageOfArray(array1D):
 
     return totalSum/quantity
 
-def boxIsNewLine(box1, box2, average):
+def boxIsNewLine(box1, box2):
+    print(box1, box2)
+
     p0, p1, p2, p3 = box1[0]
     d0, d1, d2, d3 = box2[0]
 
-    if p0[0] <= d0[0]:
-        return True
-    # elif p0[0] <= (d0[0] + 0.05*average):
-    #     print(f"\n p0 = {p0[0]}; d0 = {d0[0]}; average = {average}")
-    #     return True
-    
-    return False
+    if d0[1] in range(round(p0[1]),round(p2[1])) or p0[1] in range(round(d0[1]),round(d2[1])):
+        return False
+
+    return True
 
 # Add missing words to the dictionary
 def addDic(dic):
