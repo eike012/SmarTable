@@ -13,7 +13,7 @@ import math
 import kmeans
 import stringReader as sr
 
-img = 'images/c.jpg'
+img = 'images/l.jpg'
 
 # Show boxes of text of image
 def showBoxes(img, bounds, color="yellow", width=2):
@@ -53,7 +53,84 @@ def checkImageQuality(image):
     labels = kmeans.kmeansOfArray2D(arrayMinusculo)
     for i in range(len(labels)):
         print(f"Category of {results[i][1]}: {labels[i]}")
+
+    print(f"\n Number of columns: {numberColumnsImage(results, labels)}")
     return results, confidence
+
+def aroundHeight(height, toCheck):
+    print(height, toCheck)
+    if abs(height - toCheck) < 10:
+        return True
+    return False
+
+def numberColumnsImage(results, labels):
+    
+    # arrayWidth = arrayWidthOfBoxes(results)
+    # averageWidth = averageOfArray(arrayWidth)
+
+    for i in range(len(labels)):
+        if labels[i] == "Recipe":
+            beginningSecondLoop = i
+            break
+    
+    numberColumns = 0
+    height = 0
+
+    for j in range(beginningSecondLoop, len(labels)):
+        if labels[j] == "Title"  and numberColumns == 0:
+            height = results[j][0][0]
+            numberColumns += 1
+        else:
+            if labels[j] == "Title" and not results[j][1].isnumeric() and aroundHeight(height, results[j][0][0]):
+                numberColumns += 1
+
+
+    return numberColumns
+    # lastTitle  = -1
+    # linesRead = 1
+    # numberTitles = 0
+
+    # for j in range(beginningSecondLoop, len(labels)):
+    #     if labels[j] == "Title" and results[j][1].isnumeric():
+    #         continue
+    #     else:
+    #         if labels[j] == "Title" and lastTitle == -1:
+    #             lastTitle = j
+    #             numberTitles += 1
+    #             continue
+    #         if labels[j] == "Title":
+    #             if boxIsNewLine(results[j], results[lastTitle], averageWidth):
+    #                 print(results[lastTitle][1], results[j][1])
+    #                 linesRead += 1
+    #             lastTitle = j
+    #             numberTitles += 1
+                    
+    # print(f"\n total of titles: {numberTitles}")
+    # print(f"\n total of lines: {linesRead}")
+    # return round(numberTitles/linesRead)
+
+
+
+def averageOfArray(array1D):
+    totalSum = 0
+    quantity = len(array1D)
+
+    for element in array1D:
+        totalSum += element
+
+    return totalSum/quantity
+
+def boxIsNewLine(box1, box2, average):
+    p0, p1, p2, p3 = box1[0]
+    d0, d1, d2, d3 = box2[0]
+
+    if p0[0] <= d0[0]:
+        return True
+    # elif p0[0] <= (d0[0] + 0.05*average):
+    #     print(f"\n p0 = {p0[0]}; d0 = {d0[0]}; average = {average}")
+    #     return True
+    
+    return False
 
 # Add missing words to the dictionary
 def addDic(dic):
