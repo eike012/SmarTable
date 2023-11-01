@@ -2,8 +2,6 @@ import re
 import enchant
 import easyocr
 import pytesseract
-import logisticRegression as lr
-import joblib
 import json
 import cv2
 from PIL import Image, ImageDraw
@@ -14,7 +12,8 @@ import kmeans
 import statistics
 import stringReader as sr
 
-img = 'images/d.jpeg'
+img = 'images/image.png'
+section_img = 'images/section.png'
 
 # Show boxes of text of image
 def showBoxes(img, bounds, color="yellow", width=2):
@@ -29,35 +28,50 @@ def showBoxes(img, bounds, color="yellow", width=2):
 # Get results from the image
 def checkImageQuality(image):
     pp.preProcess(image)
-    results, confidence = processImageWithEasyOCR(img)
-    showBoxes(img, results)
-    print(confidence)
-    print("Width:\n")
-    arraywidth = arrayWidthOfBoxes(results)
-    print(arraywidth)
-    print("Height:\n")
-    arrayheight = arrayHeightOfBoxes(results)
-    print(arrayheight)
-    print("Area:\n")
-    arrayarea = arrayAreaOfBoxes(results)
-    print(arrayarea)
-    print("Kmeans of width:\n")
-    print(kmeans.kmeansOfArray1D(arraywidth))
-    print("Kmeans of height:\n")
-    print(kmeans.kmeansOfArray1D(arrayheight))
-    print("Kmeans of area:\n")
-    print(kmeans.kmeansOfArray1D(arrayarea))
-    print("Lowercase ratio:\n")
+    results,_,_ = processImageWithEasyOCR(img)
+    # print(confidence)
+    # print("Width:\n")
+    # arraywidth = arrayWidthOfBoxes(results)
+    # print(arraywidth)
+    # print("Height:\n")
+    # arrayheight = arrayHeightOfBoxes(results)
+    # print(arrayheight)
+    # print("Area:\n")
+    # arrayarea = arrayAreaOfBoxes(results)
+    # print(arrayarea)
+    # print("Kmeans of width:\n")
+    # print(kmeans.kmeansOfArray1D(arraywidth))
+    # print("Kmeans of height:\n")
+    # print(kmeans.kmeansOfArray1D(arrayheight))
+    # print("Kmeans of area:\n")
+    # print(kmeans.kmeansOfArray1D(arrayarea))
+    # print("Lowercase ratio:\n")
     arrayMinusculo = arrayLowerCaseAndNumbers(results)
-    print(arrayMinusculo)
-    print("Labels minuscula + numeros:\n")
+    # print(arrayMinusculo)
+    # print("Labels minuscula + numeros:\n")
     labels = kmeans.kmeansOfArray2D(arrayMinusculo)
-    for i in range(len(labels)):
-        print(f"Category of {results[i][1]}: {labels[i]}")
+    # for i in range(len(labels)):
+    #     print(f"Category of {results[i][1]}: {labels[i]}")
+    number_of_columns = numberColumnsImage(results, labels)
+    print(f"\n Number of columns: {number_of_columns}")
+    image = Image.open(img)
+    width, height = image.size
+    part_width = width // number_of_columns
 
-    print(f"\n Number of columns: {numberColumnsImage(results, labels)}")
-    return results, confidence
+    for i in range(number_of_columns):
+        left = i * part_width
+        right = (i + 1) * part_width
+        section = image.crop((left, 0, right, height))
 
+        section.save(section_img)
+        results, confidence, element_array = processImageWithEasyOCR(section_img)
+        showBoxes(section_img, results)
+        arrayMinusculo = arrayLowerCaseAndNumbers(results)
+        labels = kmeans.kmeansOfArray2D(arrayMinusculo)
+        createJson(element_array, labels)
+    return confidence
+
+# Calculate the number of columns within a menu
 def numberColumnsImage(results, labels):
 
     for i in range(len(labels)):
@@ -85,13 +99,13 @@ def numberColumnsImage(results, labels):
                     numberTitles += 1
                 lastTitle = j
                     
-    print(f"\n Total of titles per line: {titlesPerLine}")
+    print(f"\nTotal of titles per line: {titlesPerLine}")
 
     mode = statistics.mode(titlesPerLine)
     return mode   
 
 
-
+# Get the average value of an array
 def averageOfArray(array1D):
     totalSum = 0
     quantity = len(array1D)
@@ -101,9 +115,8 @@ def averageOfArray(array1D):
 
     return totalSum/quantity
 
+# Check if subsequential boxes make up a new line
 def boxIsNewLine(box1, box2):
-    print(box1, box2)
-
     p0, p1, p2, p3 = box1[0]
     d0, d1, d2, d3 = box2[0]
 
@@ -177,9 +190,9 @@ def processImageWithEasyOCR(img):
             probMean += prob
             coordinates.append([x_coordinates,y_coordinates])
 
-    processImageWithTesseractOCR(img, coordinates, dic)
+    element_array = processImageWithTesseractOCR(img, coordinates, dic)
     
-    return filtered_results, probMean/len(filtered_results)
+    return filtered_results, probMean/len(filtered_results), element_array
 
 # Process individual images using TesseractOCR
 def processImageWithTesseractOCR(image_path, coordinates, dic):
@@ -198,7 +211,7 @@ def processImageWithTesseractOCR(image_path, coordinates, dic):
 
         element_array.append(new_text)
 
-    createJson(element_array)
+    return element_array
 
 # Reset title, recipe and prices variables
 def resetCategories():
@@ -216,34 +229,30 @@ def returnData(title, recipe, prices):
     return output_data
 
 # Create json file to have each item in the menu
-def createJson(array):
+def createJson(array, labels):
     json_path = "categories.json"
     output = []
-    lr.train()
     title, recipe, prices = resetCategories()
-    classifier = joblib.load('classifier.pkl')
-    for text in array:
-        text_vectorized = lr.tfidf_vectorizer.transform([text])
-        category = classifier.predict(text_vectorized)
-        print(f"Predicted Category for {text}: {category[0]}")
-        if category == "Title":
+    for i in range(len(array)):
+        print(f"{array[i]} = {labels[i]}")
+        if labels[i] == "Title":
             if title != "":
-                if sr.ratioLowerCase(text) == 0:
-                    title = text
+                if sr.ratioLowerCase(array[i]) == 0:
+                    title = array[i]
                 else:
-                    recipe = text + " "
+                    recipe = array[i] + " "
                 continue
             else: 
-                title = text
-        elif category == "Recipe":
-            recipe += text
+                title = array[i]
+        elif labels[i] == "Recipe":
+            recipe += array[i]
         else:
-            prices.append(text)
+            prices.append(array[i])
         if title != "" and recipe != "" and len(prices) != 0:
             output_data = returnData(title, recipe, prices)
             output.append(output_data)
             title, recipe, prices = resetCategories()
-    
+
     with open(json_path, 'w') as json_file:
         json.dump(output, json_file, indent=4)
 
@@ -301,4 +310,3 @@ def arrayLowerCaseAndNumbers(ocrResults):
 
 
 
-checkImageQuality(img)
