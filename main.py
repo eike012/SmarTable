@@ -14,7 +14,8 @@ plano = 'images/plano.jpeg'
 
 def main():
     choice = 0
-    results, confidence = ocr.checkImageQuality(img_b) 
+    results, confidence = ocr.checkImageQuality(img_c) 
+    print(confidence)
     # Check whether confidence is above considerable percentage
     while confidence < 0.8 and choice == 0:
         if confidence < 0.8:   

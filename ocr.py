@@ -28,7 +28,7 @@ def showBoxes(img, bounds, color="yellow", width=2):
 # Get results from the image
 def checkImageQuality(image):
     pp.preProcess(image)
-    results,_,_ = processImageWithEasyOCR(img)
+    results,_,element_array = processImageWithEasyOCR(img)
     # print(confidence)
     # print("Width:\n")
     # arraywidth = arrayWidthOfBoxes(results)
@@ -46,17 +46,20 @@ def checkImageQuality(image):
     # print("Kmeans of area:\n")
     # print(kmeans.kmeansOfArray1D(arrayarea))
     # print("Lowercase ratio:\n")
-    arrayMinusculo = arrayLowerCaseAndNumbers(results)
+    arrayMinusculo = arrayLowerCaseAndNumbers(element_array)
     # print(arrayMinusculo)
     # print("Labels minuscula + numeros:\n")
     labels = kmeans.kmeansOfArray2D(arrayMinusculo)
     # for i in range(len(labels)):
     #     print(f"Category of {results[i][1]}: {labels[i]}")
-    number_of_columns = numberColumnsImage(results, labels)
+    number_of_columns = numberColumnsImage(results, kmeans.kmeansOfArray2D((arrayLowerCaseAndNumbers(results))))
+
     print(f"\n Number of columns: {number_of_columns}")
     image = Image.open(img)
     width, height = image.size
     part_width = width // number_of_columns
+
+    confidences, elements, kmean = [], [], []
 
     for i in range(number_of_columns):
         left = i * part_width
@@ -65,11 +68,15 @@ def checkImageQuality(image):
 
         section.save(section_img)
         results, confidence, element_array = processImageWithEasyOCR(section_img)
+        elements = elements + element_array
+        confidences.append(confidence)
         showBoxes(section_img, results)
-        arrayMinusculo = arrayLowerCaseAndNumbers(results)
-        labels = kmeans.kmeansOfArray2D(arrayMinusculo)
-        createJson(element_array, labels)
-    return confidence
+        arrayMinusculo = arrayLowerCaseAndNumbers(element_array)
+        kmean = kmean + kmeans.kmeansOfArray2D(arrayMinusculo)
+
+    createJson(elements, kmean)
+
+    return results, averageOfArray(confidences)
 
 # Calculate the number of columns within a menu
 def numberColumnsImage(results, labels):
@@ -298,12 +305,14 @@ def arrayAreaOfBoxes(bounds):
 
 # Return an array with a tuple = {ratio of lower case letters, quantity of numbers}
 # for each box read by ocr
-def arrayLowerCaseAndNumbers(ocrResults):
+def arrayLowerCaseAndNumbers(array):
     arrayResult = []
-
-    for box in ocrResults:
-        readString = box[1]
-        tupleResult = [sr.ratioLowerCase(readString) * 3, sr.countDollarSignNumbers(readString)]
+    for words in array:
+        if type(words) == tuple:
+            word = words[1]
+        else:
+            word = words
+        tupleResult = [sr.ratioLowerCase(word) * 3, sr.countDollarSignNumbers(word)]
         arrayResult.append(tupleResult)
 
     return arrayResult
