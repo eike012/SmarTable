@@ -17,8 +17,8 @@
     ],
     [
         {
-            "Title": "\u00c0 MODA DO CHEFE",
-            "Recipe": "Calabresa, mussarela e parmes\u00e3o",
+            "Title": "À MODA DO CHEFE",
+            "Recipe": "Calabresa, mussarela e parmesão",
             "Price 1": "R$ 33,00",
             "Price 2": "R$ 22,00"
         }
@@ -26,7 +26,7 @@
     [
         {
             "Title": "A MODA DO CLIENTE",
-            "Recipe": "Escolha at\u00e9 5 ingredientes (exceto Catupiry Original e Care Seca)",
+            "Recipe": "Escolha até 5 ingredientes (exceto Catupiry Original e Care Seca)",
             "Price 1": "R$ 29,00",
             "Price 2": "R$ 41,00"
         }
@@ -34,7 +34,7 @@
     [
         {
             "Title": "ALHO E OLEO",
-            "Recipe": "Alho, mussarela e parmes\u00e3o ralado",
+            "Recipe": "Alho, mussarela e parmesão ralado",
             "Price 1": "R$ 30,00",
             "Price 2": "R$ 22,00"
         }
@@ -72,8 +72,8 @@
     ],
     [
         {
-            "Title": "BR\u00d3COLIS",
-            "Recipe": "Br\u00f3colis, bacon, cebola e mussarela",
+            "Title": "BRÓCOLIS",
+            "Recipe": "Brócolis, bacon, cebola e mussarela",
             "Price 1": "R$ 31,00",
             "Price 2": "R$ 22,00"
         }
@@ -97,7 +97,7 @@
     [
         {
             "Title": "MARGHERITA",
-            "Recipe": "Mussarela, manjeric\u00e3o e queijo parmes\u00e3o",
+            "Recipe": "Mussarela, manjericão e queijo parmesão",
             "Price 1": "R$ 30,00",
             "Price 2": "R$ 22,00"
         }
@@ -113,7 +113,7 @@
     [
         {
             "Title": "00",
-            "Recipe": "Mussarela rodelas de tomate e queijo parmes\u00e3o ralado",
+            "Recipe": "Mussarela rodelas de tomate e queijo parmesão ralado",
             "Price 1": "R$ 30,00"
         }
     ],
@@ -159,13 +159,13 @@
     [
         {
             "Title": "CARIOCA",
-            "Recipe": "DA Mussarela, ovos, calabresa mo\u00edda e pimenta a o DA",
+            "Recipe": "DA Mussarela, ovos, calabresa moída e pimenta a o DA",
             "Price 1": "R$ 24,00"
         }
     ],
     [
         {
-            "Title": "CARD\u00c1PIO",
+            "Title": "CARDÁPIO",
             "Recipe": "Ed DRA Presunto, provolone, milho, mussarela e catupiry",
             "Price 1": "R$ 33,00",
             "Price 2": "R$ 24,00"
@@ -220,7 +220,7 @@
     [
         {
             "Title": "JARDINEIRA",
-            "Recipe": "O la A Lombo canadense, bacon, parmes\u00e3o e catupiry rap A - COIUI",
+            "Recipe": "O la A Lombo canadense, bacon, parmesão e catupiry rap A - COIUI",
             "Price 1": "R$ 34,00",
             "Price 2": "R$ 24,00"
         }
@@ -243,7 +243,7 @@
     ],
     [
         {
-            "Title": "S\u00ca",
+            "Title": "SÊ",
             "Recipe": "Presunto, frango desfiado e mussarela",
             "Price 1": "R$ 33,00",
             "Price 2": "R$ 24,00"
@@ -291,7 +291,7 @@
     ],
     [
         {
-            "Title": "TR\u00caS QUEIJOS.",
+            "Title": "TRÊS QUEIJOS.",
             "Recipe": "e mussarela",
             "Price 1": "R$31,00"
         }
@@ -306,7 +306,7 @@
     [
         {
             "Title": "CINCO QUEIJOS",
-            "Recipe": "Provolone, mussarela, catupiry e parmes\u00e3o",
+            "Recipe": "Provolone, mussarela, catupiry e parmesão",
             "Price 1": "R$ 33,00",
             "Price 2": "R$ 24,00",
             "Price 3": "R$ 34,00"
@@ -315,7 +315,7 @@
     [
         {
             "Title": "SICILIANA",
-            "Recipe": "Provolone, catupiry, mussarela, parmes\u00e3o e cheddar aa aaa o Eee",
+            "Recipe": "Provolone, catupiry, mussarela, parmesão e cheddar aa aaa o Eee",
             "Price 1": "R$ 25,00",
             "Price 2": "R$ 33,00",
             "Price 3": "R$ 24,00"
@@ -442,7 +442,7 @@
     [
         {
             "Title": "CARNE SECA 2",
-            "Recipe": "Carne seca, cebola, piment\u00e3o e mussarela",
+            "Recipe": "Carne seca, cebola, pimentão e mussarela",
             "Price 1": "R$ 41,00",
             "Price 2": "RS 30,00"
         }
@@ -465,7 +465,7 @@
     ],
     [
         {
-            "Title": "PREST\u00cdGIO",
+            "Title": "PRESTÍGIO",
             "Recipe": "Chocolate, coco ralado coberto com chocolate granulado",
             "Price 1": "R$ 34,00",
             "Price 2": "R$ 25,00"

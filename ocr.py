@@ -46,10 +46,10 @@ def checkImageQuality(image):
     # print("Kmeans of area:\n")
     # print(kmeans.kmeansOfArray1D(arrayarea))
     # print("Lowercase ratio:\n")
-    arrayMinusculo = arrayLowerCaseAndNumbers(element_array)
+    # arrayMinusculo = arrayLowerCaseAndNumbers(element_array)
     # print(arrayMinusculo)
     # print("Labels minuscula + numeros:\n")
-    labels = kmeans.kmeansOfArray2D(arrayMinusculo)
+    # labels = kmeans.kmeansOfArray2D(arrayMinusculo)
     # for i in range(len(labels)):
     #     print(f"Category of {results[i][1]}: {labels[i]}")
     number_of_columns = numberColumnsImage(results, kmeans.kmeansOfArray2D((arrayLowerCaseAndNumbers(results))))
@@ -261,7 +261,7 @@ def createJson(array, labels):
             title, recipe, prices = resetCategories()
 
     with open(json_path, 'w') as json_file:
-        json.dump(output, json_file, indent=4)
+        json.dump(output, json_file, indent=4, ensure_ascii=False)
 
 # Return the width of easyOCR boxes as an array
 def arrayWidthOfBoxes(bounds):
