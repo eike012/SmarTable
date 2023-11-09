@@ -252,10 +252,10 @@ def createJson(array, labels):
             else: 
                 title = array[i]
         elif labels[i] == "Recipe":
-            recipe += array[i]
+            recipe += array[i] + " "
         else:
             prices.append(array[i])
-        if title != "" and recipe != "" and len(prices) != 0:
+        if i == len(array)-1 or (title != "" and recipe != "" and len(prices) != 0 and labels[i+1] == "Title"):
             output_data = returnData(title, recipe, prices)
             output.append(output_data)
             title, recipe, prices = resetCategories()
