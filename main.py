@@ -8,12 +8,14 @@ img_d = 'images/d.jpeg'
 img_e = 'images/e.jpeg'
 img_f = 'images/f.jpeg'
 img_g = 'images/g.jpeg'
+img_l = 'images/l.jpg'
 plano = 'images/plano.jpeg'
 
 
 def main():
     choice = 0
     results, confidence = ocr.checkImageQuality(img_c) 
+    print(confidence)
     # Check whether confidence is above considerable percentage
     while confidence < 0.8 and choice == 0:
         if confidence < 0.8:   
@@ -24,6 +26,9 @@ def main():
                 results, confidence = ocr.checkImageQuality(img_b) 
         else:
             choice = 1
+    # print("lower case: \n")
+    # list = ocr.arrayLowerCaseAndNumbers(results)
+    
         
 if __name__ == "__main__":
          main()

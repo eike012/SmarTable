@@ -5,3 +5,7 @@
 *.gif
 *.bmp
 *.svg
+
+#ignore text based files
+*.txt
+*.csv
