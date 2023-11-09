@@ -7,7 +7,6 @@ import cv2
 from PIL import Image, ImageDraw
 import quicksort as qs
 import preprocess as pp
-import math
 import kmeans
 import statistics
 import stringReader as sr
@@ -25,41 +24,32 @@ def showBoxes(img, bounds, color="yellow", width=2):
     
     image.show()
 
-# Get results from the image
-def checkImageQuality(image):
+# Get confidence from the text of the image
+def checkConfidence(image):
     pp.preProcess(image)
     results,_,element_array = processImageWithEasyOCR(img)
-    # print(confidence)
-    # print("Width:\n")
-    # arraywidth = arrayWidthOfBoxes(results)
-    # print(arraywidth)
-    # print("Height:\n")
-    # arrayheight = arrayHeightOfBoxes(results)
-    # print(arrayheight)
-    # print("Area:\n")
-    # arrayarea = arrayAreaOfBoxes(results)
-    # print(arrayarea)
-    # print("Kmeans of width:\n")
-    # print(kmeans.kmeansOfArray1D(arraywidth))
-    # print("Kmeans of height:\n")
-    # print(kmeans.kmeansOfArray1D(arrayheight))
-    # print("Kmeans of area:\n")
-    # print(kmeans.kmeansOfArray1D(arrayarea))
-    # print("Lowercase ratio:\n")
-    # arrayMinusculo = arrayLowerCaseAndNumbers(element_array)
-    # print(arrayMinusculo)
-    # print("Labels minuscula + numeros:\n")
-    # labels = kmeans.kmeansOfArray2D(arrayMinusculo)
-    # for i in range(len(labels)):
-    #     print(f"Category of {results[i][1]}: {labels[i]}")
-    number_of_columns = numberColumnsImage(results, kmeans.kmeansOfArray2D((arrayLowerCaseAndNumbers(results))))
+    confidence_scores = [result[2] for result in results]
+    average_confidence = sum(confidence_scores) / len(confidence_scores)
+    return results, average_confidence, element_array
 
-    print(f"\n Number of columns: {number_of_columns}")
+# Get number of columns of image and prices per dish
+def getColumnsandPrices(results):
+    number_of_columns, number_of_prices = numberColumnsImage(results, kmeans.kmeansOfArray2D((arrayLowerCaseAndNumbers(results))))
+
+    print(f"\nNumber of columns: {number_of_columns}")
+    print(f"\nNumber of prices: {number_of_prices}")
+
+    return number_of_columns, number_of_prices
+
+# Read the text with EasyOCR and TesseractOCR
+def readText(results, element_array):
+    number_of_columns, number_of_prices = getColumnsandPrices(results)
+
     image = Image.open(img)
     width, height = image.size
     part_width = width // number_of_columns
 
-    confidences, elements, kmean = [], [], []
+    elements, kmean = [], []
 
     for i in range(number_of_columns):
         left = i * part_width
@@ -67,16 +57,13 @@ def checkImageQuality(image):
         section = image.crop((left, 0, right, height))
 
         section.save(section_img)
-        results, confidence, element_array = processImageWithEasyOCR(section_img)
+        results, _, element_array = processImageWithEasyOCR(section_img)
         elements = elements + element_array
-        confidences.append(confidence)
         showBoxes(section_img, results)
         arrayMinusculo = arrayLowerCaseAndNumbers(element_array)
         kmean = kmean + kmeans.kmeansOfArray2D(arrayMinusculo)
 
-    createJson(elements, kmean)
-
-    return results, averageOfArray(confidences)
+    createJson(elements, kmean, number_of_prices)
 
 # Calculate the number of columns within a menu
 def numberColumnsImage(results, labels):
@@ -87,8 +74,8 @@ def numberColumnsImage(results, labels):
             break
 
     lastTitle  = -1
-    titlesPerLine = []
-    numberTitles = 0
+    titlesPerLine, pricesPerLine = [], []
+    numberTitles, numberPrices = 0, 0
 
     for j in range(beginningSecondLoop, len(labels)):
         if labels[j] == "Title" and results[j][1].isnumeric():
@@ -99,17 +86,25 @@ def numberColumnsImage(results, labels):
                 numberTitles += 1
                 continue
             if labels[j] == "Title" and not results[j][1].isnumeric():
+                if numberPrices > 0:
+                    pricesPerLine.append(numberPrices)
+                    numberPrices = 0
                 if boxIsNewLine(results[j], results[lastTitle]):
                     titlesPerLine.append(numberTitles)
                     numberTitles = 1
                 else:
                     numberTitles += 1
                 lastTitle = j
-                    
+            elif labels[j] == "Price":
+                numberPrices += 1
+    
+    print(f"\nTotal of prices per line: {pricesPerLine}")
     print(f"\nTotal of titles per line: {titlesPerLine}")
 
-    mode = statistics.mode(titlesPerLine)
-    return mode   
+    titles_mode = statistics.mode(titlesPerLine)
+    prices_mode = statistics.mode(pricesPerLine)
+
+    return titles_mode, prices_mode   
 
 
 # Get the average value of an array
@@ -124,8 +119,8 @@ def averageOfArray(array1D):
 
 # Check if subsequential boxes make up a new line
 def boxIsNewLine(box1, box2):
-    p0, p1, p2, p3 = box1[0]
-    d0, d1, d2, d3 = box2[0]
+    p0, _, p2, _ = box1[0]
+    d0, _, d2, _ = box2[0]
 
     if d0[1] in range(round(p0[1]),round(p2[1])) or p0[1] in range(round(d0[1]),round(d2[1])):
         return False
@@ -162,7 +157,7 @@ def checkGrammar(text, dic):
                     # words[index] = suggestions[0]
                     pass
             if word == "RS":
-                word = word.replace('RS','R$')
+                words[index] = "R$"
 
     output = ''.join([value + sep for value, sep in zip(words, re.findall(regex, text))]) + words[-1]
     return output
@@ -222,7 +217,7 @@ def processImageWithTesseractOCR(image_path, coordinates, dic):
 
 # Reset title, recipe and prices variables
 def resetCategories():
-    return "","",[]
+    return "","",[],0
 
 # Return output data to insert into the json file
 def returnData(title, recipe, prices):
@@ -236,13 +231,15 @@ def returnData(title, recipe, prices):
     return output_data
 
 # Create json file to have each item in the menu
-def createJson(array, labels):
+def createJson(array, labels, number_of_prices):
     json_path = "categories.json"
     output = []
-    title, recipe, prices = resetCategories()
+    title, recipe, prices, prices_read = resetCategories()
+    overread_prices = []
+
     for i in range(len(array)):
         print(f"{array[i]} = {labels[i]}")
-        if labels[i] == "Title":
+        if labels[i] == "Title" and len(array[i]) > 3 and not sr.hasManyNumbers(array[i]) and array[i] != "R$":
             if title != "":
                 if sr.ratioLowerCase(array[i]) == 0:
                     title = array[i]
@@ -251,57 +248,27 @@ def createJson(array, labels):
                 continue
             else: 
                 title = array[i]
-        elif labels[i] == "Recipe":
+        elif labels[i] == "Recipe" and len(array[i]) > 3:
             recipe += array[i] + " "
-        else:
-            prices.append(array[i])
+        elif labels[i] == "Price" and 3 < len(array[i]) < 10:
+            if prices_read < number_of_prices:
+                prices.append(array[i])
+                prices_read += 1
+            else:
+                overread_prices.append(array[i])
         if i == len(array)-1 or (title != "" and recipe != "" and len(prices) != 0 and labels[i+1] == "Title"):
             output_data = returnData(title, recipe, prices)
             output.append(output_data)
-            title, recipe, prices = resetCategories()
+            title, recipe, prices, prices_read = resetCategories()
+            if len(overread_prices) > 0:
+                index = 0
+                while len(overread_prices) != 0 and index < number_of_prices:
+                    prices.append(overread_prices[0])
+                    overread_prices.pop(0)
+                    index += 1                 
 
     with open(json_path, 'w') as json_file:
         json.dump(output, json_file, indent=4, ensure_ascii=False)
-
-# Return the width of easyOCR boxes as an array
-def arrayWidthOfBoxes(bounds):
-    boundsLength = len(bounds)
-    arrayWidth = []
-    
-    for i in range(boundsLength):
-        p0, p1, p2, p3 = bounds[i][0]
-        width_superior = math.sqrt(((p1[0] -  p0[0])**2) + ((p1[1] - p0[1])**2))
-        width_inferior = math.sqrt(((p2[0] -  p3[0])**2) + ((p2[1] - p3[1])**2))
-        width = (width_superior + width_inferior)/2
-        arrayWidth.append(width)
-      
-    return arrayWidth    
-
-# Return the height of easyOCR boxes as an array
-def arrayHeightOfBoxes(bounds):
-    boundsLength = len(bounds)
-    arrayHeight = []
-    
-    for i in range(boundsLength):
-        p0, p1, p2, p3 = bounds[i][0]
-        height_right = math.sqrt(((p2[0] -  p1[0])**2) + ((p2[1] - p1[1])**2))
-        height_left = math.sqrt(((p0[0] -  p3[0])**2) + ((p0[1] - p3[1])**2))
-        height = (height_right + height_left)/2
-        arrayHeight.append(height)
-      
-    return arrayHeight  
-
-# Return the area of easyOCR boxes as an array
-def arrayAreaOfBoxes(bounds):
-    arrayHeight = arrayHeightOfBoxes(bounds)
-    arrayWidth = arrayWidthOfBoxes(bounds)
-    arrayArea = []
-
-    for i in range(len(arrayHeight)):
-        area = arrayHeight[i]*arrayWidth[i]
-        arrayArea.append(area)
-
-    return arrayArea
 
 # Return an array with a tuple = {ratio of lower case letters, quantity of numbers}
 # for each box read by ocr

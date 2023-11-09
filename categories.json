@@ -4,25 +4,31 @@
             "Title": "CALABRESA",
             "Recipe": "Calabresa com rodelas de cebola ",
             "Price 1": "R$ 21,00",
-            "Price 2": "R$ 29,00",
-            "Price 3": "R$ 21,00",
-            "Price 4": "R$ 29,00"
+            "Price 2": "R$ 29,00"
+        }
+    ],
+    [
+        {
+            "Title": "MUSSARELA",
+            "Recipe": "Mussarela com rodelas de tomate ",
+            "Price 1": "R$ 21,00",
+            "Price 2": "R$ 29,00"
         }
     ],
     [
         {
             "Title": "À MODA DO CHEFE",
-            "Recipe": "Mussarela com rodelas de tomate Calabresa, mussarela e parmesão ",
+            "Recipe": "Calabresa, mussarela e parmesão ",
             "Price 1": "R$ 33,00",
-            "Price 2": "R$ 22,00",
-            "Price 3": "R$ 29,00"
+            "Price 2": "R$ 22,00"
         }
     ],
     [
         {
             "Title": "A MODA DO CLIENTE",
             "Recipe": "Escolha até 5 ingredientes (exceto Catupiry Original e Care Seca) ",
-            "Price 1": "R$ 41,00"
+            "Price 1": "R$ 29,00",
+            "Price 2": "R$ 41,00"
         }
     ],
     [
@@ -51,7 +57,7 @@
     ],
     [
         {
-            "Title": "00",
+            "Title": "BAURU",
             "Recipe": "Presunto, mussarela e rodelas de tomate ",
             "Price 1": "R$ 30,00"
         }
@@ -106,19 +112,19 @@
     ],
     [
         {
-            "Title": "00",
+            "Title": "NAPOLITANA",
             "Recipe": "Mussarela rodelas de tomate e queijo parmesão ralado TOSCANA 4 Calabresa moida e mussarela ",
             "Price 1": "R$ 30,00",
-            "Price 2": "R$31,00",
-            "Price 3": "R$ 24,00"
+            "Price 2": "R$31,00"
         }
     ],
     [
         {
             "Title": "VERONA",
             "Recipe": "Calabresa moida e catupiry ",
-            "Price 1": "R$ 31,00",
-            "Price 2": "R$ 23,00"
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 31,00",
+            "Price 3": "R$ 23,00"
         }
     ],
     [
@@ -219,7 +225,7 @@
     ],
     [
         {
-            "Title": "SÊ",
+            "Title": "NOBRE",
             "Recipe": "Presunto, frango desfiado e mussarela ",
             "Price 1": "R$ 33,00",
             "Price 2": "R$ 24,00"
@@ -238,15 +244,15 @@
             "Title": "PALMITO",
             "Recipe": "Palmito, cebola e mussarela ",
             "Price 1": "R$ 31,00",
-            "Price 2": "R$ 23,00",
-            "Price 3": "R$ 33,00"
+            "Price 2": "R$ 23,00"
         }
     ],
     [
         {
             "Title": "PEPPERONTI",
             "Recipe": "Mussarela e pepperoni picado ",
-            "Price 1": "R$ 23,00"
+            "Price 1": "R$ 33,00",
+            "Price 2": "R$ 23,00"
         }
     ],
     [
@@ -278,25 +284,25 @@
             "Title": "QUATRO QUEIJOS",
             "Recipe": "Provolone, mussarela, catupiry e parmesão ",
             "Price 1": "R$ 33,00",
-            "Price 2": "R$ 24,00",
-            "Price 3": "R$ 34,00"
+            "Price 2": "R$ 24,00"
         }
     ],
     [
         {
             "Title": "CINCO QUEIJOS",
             "Recipe": "Provolone, catupiry, mussarela, parmesão e cheddar aa aaa o Eee ",
-            "Price 1": "R$ 25,00",
-            "Price 2": "R$ 33,00",
-            "Price 3": "R$ 24,00"
+            "Price 1": "R$ 34,00",
+            "Price 2": "R$ 25,00",
+            "Price 3": "R$ 33,00"
         }
     ],
     [
         {
             "Title": "SICILIANA",
             "Recipe": "bacon coberto com mussarela Champignon ",
-            "Price 1": "R$ 25,00",
-            "Price 2": "R$ 35,00"
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 25,00",
+            "Price 3": "R$ 35,00"
         }
     ],
     [
@@ -408,7 +414,7 @@
             "Title": "CARNE SECA 1",
             "Recipe": "Carne seca, cebola, pimentão e mussarela ",
             "Price 1": "R$ 41,00",
-            "Price 2": "RS 30,00"
+            "Price 2": "R$ 30,00"
         }
     ],
     [

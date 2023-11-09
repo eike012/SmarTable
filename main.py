@@ -14,20 +14,21 @@ plano = 'images/plano.jpeg'
 
 def main():
     choice = 0
-    results, confidence = ocr.checkImageQuality(img_c) 
+    results, confidence, element_array = ocr.checkConfidence(img_c) 
     print(confidence)
-    # Check whether confidence is above considerable percentage
+
+    # Check whether confidence is above desirable percentage
     while confidence < 0.8 and choice == 0:
         if confidence < 0.8:   
             # Take another picture
             choice = int(input("Confidence below 80%. Continue?: "))
             if choice == 0:
                 #img = newFoto()
-                results, confidence = ocr.checkImageQuality(img_b) 
+                results, confidence = ocr.checkConfidence(img_b) 
         else:
             choice = 1
-    # print("lower case: \n")
-    # list = ocr.arrayLowerCaseAndNumbers(results)
+    
+    ocr.readText(results, element_array)
     
         
 if __name__ == "__main__":

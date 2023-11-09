@@ -68,20 +68,3 @@ def preProcess(img):
     cv2.imwrite('images/image.png', denoised)
     return denoised  
 
-# # Pre-process image
-# def teste1PreProcess(img):
-#     image = cv2.imread(img)
-#     gray = getGrayScale(image)
-#     cv2.imwrite('tests/gray.png',gray)
-#     # gray = cv2.rotate(gray, cv2.ROTATE_90_CLOCKWISE)
-#     deskewed = gray
-#     cv2.imwrite('tests/deskewed.png',deskewed)
-#     denoised = removeNoise(deskewed)
-#     cv2.imwrite('tests/denoised.png',denoised)
-#     open = opening(denoised)
-#     cv2.imwrite('tests/opening.png',open)
-#     thresh = thresholding(open)
-#     cv2.imwrite('images/image.png',denoised)
-#     can = canny(thresh)
-#     cv2.imwrite('tests/canny.png',can)
-#     return thresh

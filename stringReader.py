@@ -1,4 +1,4 @@
-#returns the numbers of dollar signs and numbers in a string
+# Returns the numbers of dollar signs and numbers in a string
 def countDollarSignNumbers(input_string):
     numberAndDollarSign = 0
     for character in input_string:
@@ -7,11 +7,23 @@ def countDollarSignNumbers(input_string):
         
     return numberAndDollarSign
 
-#returns length of string
+# Returns length of string
 def stringLength(input_string):
     return len(input_string)
 
-#returns the ratio of lower case letters on a string
+# Returns whether a string has many numerical values or not
+def hasManyNumbers(input_string):
+    count = 0
+    for character in input_string:
+        if character.isnumeric():
+            count += 1
+
+    if count/ len(input_string) > 0.5:    
+        return True
+
+    return False
+
+# Returns the ratio of lower case letters on a string
 def ratioLowerCase(input_string):
     totalLetters = len(input_string)
     lowerCase = 0
