@@ -1,198 +1,7 @@
 [
     [
         {
-            "Title": "ABOBRINHA.",
-            "Recipe": "abobrinha e parmesão mussarela, ",
-            "Price 1": "R$ 22,00",
-            "Price 2": "R$ 30,90"
-        }
-    ],
-    [
-        {
-            "Title": "ALCACHOFRA L...",
-            "Recipe": "alcachofra, mussarela, tomate seco e manjericão ",
-            "Price 1": "R$ 38,90",
-            "Price 2": "R$ 27,90"
-        }
-    ],
-    [
-        {
-            "Title": "ALCACHOFRA II.",
-            "Recipe": "mussarela, alcachofra, champignon e aliche ",
-            "Price 1": "R$ 40,90",
-            "Price 2": "R$ 29,90"
-        }
-    ],
-    [
-        {
-            "Title": "ALHO PORO.",
-            "Recipe": "mussarela, alho poró e gorgonzola ",
-            "Price 1": "R$ 32,90",
-            "Price 2": "R$ 23,00"
-        }
-    ],
-    [
-        {
-            "Title": "ALICHE 1.",
-            "Recipe": "mussarela e aliche ",
-            "Price 1": "R$ 36,90",
-            "Price 2": "R$ 26,90"
-        }
-    ],
-    [
-        {
-            "Title": "ALICHE ll.....",
-            "Recipe": "aliche e parmesão ",
-            "Price 1": "R$ 38,90",
-            "Price 2": "R$ 27,90"
-        }
-    ],
-    [
-        {
-            "Title": "A MODA DO CHEFE",
-            "Recipe": "calabresa, bacon e catupiry (tipo requeijão) ",
-            "Price 1": "R$ 32,90",
-            "Price 2": "R$ 23,90"
-        }
-    ],
-    [
-        {
-            "Title": "ATUM | ESPECIAL",
-            "Recipe": "atum e cebola ",
-            "Price 1": "R$ 27,90",
-            "Price 2": "R$ 37,90"
-        }
-    ],
-    [
-        {
-            "Title": "ATUM Il ESPECIAL...",
-            "Recipe": "atum e mussarela ",
-            "Price 1": "R$ 28,90",
-            "Price 2": "R$ 39,90"
-        }
-    ],
-    [
-        {
-            "Title": "ATUM CHICHARRO 1",
-            "Recipe": "atum e cebola ",
-            "Price 1": "R$ 24,90",
-            "Price 2": "R$ 33,90"
-        }
-    ],
-    [
-        {
-            "Title": "ATUM CHICHARRO II.....",
-            "Recipe": "atum e mussarela ",
-            "Price 1": "R$ 25,90",
-            "Price 2": "R$ 34,90"
-        }
-    ],
-    [
-        {
-            "Title": "BAIANA.",
-            "Recipe": "calabresa moída, ovos, pimenta e cebola ",
-            "Price 1": "R$ 20,90",
-            "Price 2": "R$ 27,90"
-        }
-    ],
-    [
-        {
-            "Title": "BACON.",
-            "Recipe": "mussarela, bacon e cebola ",
-            "Price 1": "R$ 23,90",
-            "Price 2": "R$ 31,90"
-        }
-    ],
-    [
-        {
-            "Title": "BAURU.",
-            "Recipe": "tomate e mussarela presunto, ",
-            "Price 1": "R$ 22,90",
-            "Price 2": "R$ 30,90"
-        }
-    ],
-    [
-        {
-            "Title": "BERINGELA.",
-            "Recipe": "beringela, mussarela e parmesão ",
-            "Price 1": "R$ 20,90",
-            "Price 2": "R$ 27,90"
-        }
-    ],
-    [
-        {
-            "Title": "PPASILEIRA",
-            "Recipe": "e E | milho e catupiry (tipo requeijão) frango, ",
-            "Price 1": "R$ 23,90",
-            "Price 2": "R$ 31,90"
-        }
-    ],
-    [
-        {
-            "Title": "BRÓCOLIS 1.",
-            "Recipe": "bacon e mussarela brócolis, ",
-            "Price 1": "R$ 23,90",
-            "Price 2": "R$ 32,90"
-        }
-    ],
-    [
-        {
-            "Title": "BRÓCOLIS II.",
-            "Recipe": "brócolis, catupiry (tipo requeijão) e alho frito Br Do Dc Be ae ( ",
-            "Price 1": "R$ 23,90",
-            "Price 2": "R$ 32,90"
-        }
-    ],
-    [
-        {
-            "Title": "CALABRESA",
-            "Recipe": "cebola e azeitonas calabresa, ",
-            "Price 1": "R$ 18,90",
-            "Price 2": "R$ 25,90"
-        }
-    ],
-    [
-        {
-            "Title": "CARNE SECA.",
-            "Recipe": "seca,pimentão, mussarela. came molho de pimenta e cebola ",
-            "Price 1": "R$ 27,90",
-            "Price 2": "R$ 38,90"
-        }
-    ],
-    [
-        {
-            "Title": "CALZONE ESPECIAL....",
-            "Recipe": "milho, bacon, palmito, frango, mussarela, EU LDO] TUTTI aa catupiry (tipo requeijão) e parmesão ",
-            "Price 1": "R$ 28,90",
-            "Price 2": "«R$ 39,90"
-        }
-    ],
-    [
-        {
-            "Title": "CAMARÃO ESPECIAL...",
-            "Recipe": "tomate e catupiry (tipo requeijão) camarão, ",
-            "Price 1": "R$ 32.90",
-            "Price 2": "R$ 43,90"
-        }
-    ],
-    [
-        {
-            "Title": "CHAMPIGNON.",
-            "Recipe": "champignon, bacon e mussarela ",
-            "Price 1": "R$ 22,90",
-            "Price 2": "R$ 31,90"
-        }
-    ],
-    [
-        {
-            "Title": "CIPOTANEA..",
-            "Recipe": "DD TRIO NI DART Deococcososon0 oO Es “=. ”. mussarela, frango, milho, bacon e calabresa moída Grande Broto ",
-            "Price 1": "R$ 25,90"
-        }
-    ],
-    [
-        {
-            "Title": "ESCAROLA.",
+            "Title": "ESCAROLA..",
             "Recipe": "escarola, bacon e mussarela ",
             "Price 1": "R$ 28,90",
             "Price 2": "R$ 20,90"
@@ -208,7 +17,7 @@
     ],
     [
         {
-            "Title": "......",
+            "Title": "FRANGO COM CATUPIRY.",
             "Recipe": "frango, catupiry (tipo requeijão) ",
             "Price 1": "R$ 29,90",
             "Price 2": "R$ 21,90"
@@ -216,135 +25,159 @@
     ],
     [
         {
-            "Title": "GEOVANESA...",
-            "Recipe": "brócolis, palmito, ervilha, milho e champignon RR ico > De nã as AR | ",
-            "Price 1": "R$ 22,90",
+            "Title": "FRANGO COM MUSSARELA. ",
+            "Recipe": "frango, mussarela e tomate ",
+            "Price 1": "R$ 30,90",
+            "Price 2": "R$ 22,90"
+        }
+    ],
+    [
+        {
+            "Title": "FRANGO COM CHEDDAR......",
+            "Recipe": "frango e cheddar ",
+            "Price 1": "R$ 29,90",
             "Price 2": "R$ 21,90"
         }
     ],
     [
         {
-            "Title": "HAMBURGUER.",
-            "Recipe": "hamburguer, cebola, mussarela, pimentão e molho barbecue ",
+            "Title": "FRANGO PHILADELPHIA.......",
+            "Recipe": "frango, cream cheese e bacon ",
+            "Price 1": "R$ 34,90",
+            "Price 2": "R$ 31,90"
+        }
+    ],
+    [
+        {
+            "Title": "GEOVANESA.",
+            "Recipe": "brócolis, palmito, ervilha, milho e cnampignon ",
             "Price 1": "R$ 25,90",
             "Price 2": "R$ 22,90"
+        }
+    ],
+    [
+        {
+            "Title": "HAMBURGUER...",
+            "Recipe": "hamburguer, cebola, mussarela, pimentão e molho barbecue ",
+            "Price 1": "R$ 26,90",
+            "Price 2": "«R$ 36,90"
         }
     ],
     [
         {
             "Title": "LOMBO",
             "Recipe": "lombo, tomate e catupiry (tipo requeijão) ",
-            "Price 1": "R$ 31,90",
-            "Price 2": "R$ 26,90"
-        }
-    ],
-    [
-        {
-            "Title": "LOMBINHO.",
-            "Recipe": "ovo e cebola lombo. ",
-            "Price 1": "R$ 36,90",
+            "Price 1": "R$ 32,90",
             "Price 2": "R$ 23,90"
         }
     ],
     [
         {
-            "Title": "MARGUERITA.",
-            "Recipe": "tomate, manjericão e parmesão mussarela, ",
-            "Price 1": "R$ 32,90",
+            "Title": "LOMBINHO",
+            "Recipe": "lombo, ovo e cebola ",
+            "Price 1": "R$ 18,90",
             "Price 2": "R$ 25,90"
+        }
+    ],
+    [
+        {
+            "Title": "MARGUERITA....",
+            "Recipe": "mussarela, tomate, manjericão e parmesão ",
+            "Price 1": "R$ 31,90",
+            "Price 2": "R$ 23,90"
         }
     ],
     [
         {
             "Title": "MARGUERITA ESPECIAL.",
             "Recipe": "mussarela de búfala, tomate, manjericão e parmesão ",
-            "Price 1": "R$ 18,90",
-            "Price 2": "R$ 23,90"
+            "Price 1": "R$ 25,90",
+            "Price 2": "R$ 34,90"
         }
     ],
     [
         {
-            "Title": "MILHO VERDE",
+            "Title": "MILHO VERDE.",
             "Recipe": "mussarela e milho ",
-            "Price 1": "R$ 31,90",
-            "Price 2": "R$ 34,90"
+            "Price 1": "R$ 25,90",
+            "Price 2": "R$ 18,90"
         }
     ],
     [
         {
             "Title": "MISTO QUENTE.",
             "Recipe": "calabresa, tomate e mussarela ",
-            "Price 1": "R$ 25,90",
-            "Price 2": "R$ 18,90"
+            "Price 1": "R$ 24,90",
+            "Price 2": "R$ 33,90"
         }
     ],
     [
         {
             "Title": "MUSSARELA.",
-            "Recipe": "mussarela e azeitonas molho. ",
-            "Price 1": "R$ 25,90.",
-            "Price 2": "R$ 24,90"
+            "Recipe": "molho, mussarela e azeitonas ",
+            "Price 1": "R$ 18,90",
+            "Price 2": "R$ 25,90"
         }
     ],
     [
         {
-            "Title": "NAPOLITANA...",
+            "Title": "NAPOLITANA.",
             "Recipe": "mussarela, tomate e parmesão ",
-            "Price 1": "R$ 33,90",
-            "Price 2": "R$ 18,90"
+            "Price 1": "R$ 21,90",
+            "Price 2": "R$ 28,90"
         }
     ],
     [
         {
             "Title": "PALMITO |.",
             "Recipe": "palmito e mussarela ",
-            "Price 1": "R$ 25,90",
-            "Price 2": "R$ 21,90"
+            "Price 1": "R$ 22,90",
+            "Price 2": "R$ 30,90"
         }
     ],
     [
         {
-            "Title": "PALMITO II.",
+            "Title": "PALMITO II..",
             "Recipe": "palmito e catupiry (tipo requeijão) ",
-            "Price 1": "R$ 28,90",
-            "Price 2": "R$ 22,90"
+            "Price 1": "R$ 23,90",
+            "Price 2": "R$ 32,90"
         }
     ],
     [
         {
             "Title": "PEITO DE PERU.",
-            "Recipe": "peito de peru, , palmito e catupiry (tipo requeijão) De e De a a) mm e INT né so an | ",
-            "Price 1": "R$ 30,90",
-            "Price 2": "R$ 23,90"
-        }
-    ],
-    [
-        {
-            "Title": "PEPERONL......",
-            "Recipe": "peperoni mussarela e ",
-            "Price 1": "R$ 32,90",
+            "Recipe": "peito de peru. , palmito e catupiry (tipo requeijão) DO A PRA pé 90 0h | ",
+            "Price 1": "R$ 25,90",
             "Price 2": "R$ 35,90"
         }
     ],
     [
         {
-            "Title": "PHILADELPHIA",
-            "Recipe": "peito de peru, alho frito, manjericão, cream cheese e tomate ",
+            "Title": "PEPERONL.......",
+            "Recipe": "mussarela e peperoni ",
             "Price 1": "R$ 28,90",
             "Price 2": "R$ 38,90"
         }
     ],
     [
         {
-            "Title": "PHILADELPHIA II...",
-            "Recipe": "ada, EE ia Til Gu a. oo * seco e cream cheese peito de peru, tomate seco e cream cneese ",
+            "Title": "PHILADELPHIA |.",
+            "Recipe": "sr CE EEE TA E a E | no > DoOsDOBODDODDDUDDZ]T TT» al peito de peru, alho frito, manjericão, cream cheese e tomate ",
             "Price 1": "R$ 27,90",
-            "Price 2": "R$ 38,90"
+            "Price 2": "«R$ 38,90"
         }
     ],
     [
         {
-            "Title": "PHILADELPHIA III...",
+            "Title": "PHILADELPHIA II.",
+            "Recipe": "ar » Um GF mim) DOBTITJZJD]]I a eese peito de peru, tomate seco e cream cheese ",
+            "Price 1": "R$ 28,90",
+            "Price 2": "«R$ 39,90"
+        }
+    ],
+    [
+        {
+            "Title": "PHILADELPHIA IIL....",
             "Recipe": "peperoni cream cheese e ",
             "Price 1": "R$ 28,90",
             "Price 2": "R$ 39,90"
@@ -352,154 +185,10 @@
     ],
     [
         {
-            "Title": "“TO CHIC.",
-            "Recipe": "frango, milho, catupiry (tipo requeijão), bacon e batata palha Broto Grandes ",
-            "Price 1": "R$ 28,90",
-            "Price 2": "R$ 39,90"
-        }
-    ],
-    [
-        {
-            "Title": "PORTUGUESA",
-            "Recipe": "vo WIND” om presunto, ovos, cebola e mussarela Poa MIA IT ps ",
+            "Title": "“HNTO CHIC",
+            "Recipe": "frango, milho, catupiry (tipo requeijão), bacon e batata palha ",
             "Price 1": "R$ 25,90",
-            "Price 2": "«R$ 35,90"
-        }
-    ],
-    [
-        {
-            "Title": "PORTUGUESA ESPECIAL.",
-            "Recipe": "O Pros Ca. O. PORTUGUESINHA........ VONTADE o presunto, ovos, tomate, ervilha e cebola PTOS, NENE nd Add ",
-            "Price 1": "R$23,90",
-            "Price 2": "R$ 32,90"
-        }
-    ],
-    [
-        {
-            "Title": "RÚCULA 1.",
-            "Recipe": "mussarela, rúcula e tomate seco ",
-            "Price 1": "R$ 31,90",
-            "Price 2": "R$ 12,90"
-        }
-    ],
-    [
-        {
-            "Title": "RÚCULA II.",
-            "Recipe": "rúcula e tomate seco mussarela de búfala, ",
-            "Price 1": "R$ 25,90",
-            "Price 2": "R$ 24,90"
-        }
-    ],
-    [
-        {
-            "Title": "TARANTELA......",
-            "Recipe": "calabresa moída, ervilha, tomate e parmesão ",
-            "Price 1": "R$ 33,90",
-            "Price 2": "R$ 26,90"
-        }
-    ],
-    [
-        {
-            "Title": "TOSCANA",
-            "Recipe": "calabresa moída e mussarela ",
-            "Price 1": "R$ 36,90",
-            "Price 2": "R$ 20,90"
-        }
-    ],
-    [
-        {
-            "Title": "TOMATE SECO",
-            "Recipe": "mussarela, tomate seco e alho frito ",
-            "Price 1": "R$ 27,90",
-            "Price 2": "R$ 31,90"
-        }
-    ],
-    [
-        {
-            "Title": "TOMATE SECO II.",
-            "Recipe": "mussarela, tomate seco e parmesão ",
-            "Price 1": "R$ 22,90",
-            "Price 2": "R$ 25.90"
-        }
-    ],
-    [
-        {
-            "Title": "2 QUEIJOS.",
-            "Recipe": "mussarela e catupiry (tipo requeijão) ",
-            "Price 1": "R$ 34,90",
-            "Price 2": "R$ 26,90"
-        }
-    ],
-    [
-        {
-            "Title": "3 QUEIJOS",
-            "Recipe": "catupiry (tipo requeijão), mussarela, provolone ",
-            "Price 1": "R$ 36,90",
-            "Price 2": "R$ 25,90"
-        }
-    ],
-    [
-        {
-            "Title": "4 QUEIJOS.",
-            "Recipe": "catupiry (tipo requeijão), mussarela, provolone & parmesão ",
-            "Price 1": "R$ 21,90",
-            "Price 2": "R$ 28,90"
-        }
-    ],
-    [
-        {
-            "Title": "5 QUEIJOS.",
-            "Recipe": "catupiry (tipo requeijão), mussarela, provolone, gorgonzola e parmesão Pizzas DOCES ",
-            "Price 1": "R$ 21,90",
-            "Price 2": "R$ 29,90"
-        }
-    ],
-    [
-        {
-            "Title": "BANANA I.",
-            "Recipe": "banana, leite condensado e canela ",
-            "Price 1": "R$ 23,90",
-            "Price 2": "R$ 31,90"
-        }
-    ],
-    [
-        {
-            "Title": "BANANA II.",
-            "Recipe": "banana e chocolate ",
-            "Price 1": "R$ 32,90",
-            "Price 2": "R$ 23,90"
-        }
-    ],
-    [
-        {
-            "Title": "BRIGADEIRO.",
-            "Recipe": "chocolate granulado ",
-            "Price 1": "R$ 25,90",
-            "Price 2": "R$ 18,00"
-        }
-    ],
-    [
-        {
-            "Title": "ROMEU E JULIETA.",
-            "Recipe": "mussarela e goiabada ",
-            "Price 1": "R$ 29,90",
-            "Price 2": "R$ 21,90"
-        }
-    ],
-    [
-        {
-            "Title": "PRESTÍGIO.",
-            "Recipe": "chocolate branco e coco ralado ",
-            "Price 1": "R$ 31,90",
-            "Price 2": "R$ 23,90"
-        }
-    ],
-    [
-        {
-            "Title": "MMS CONFFET.......",
-            "Recipe": "chocolate preto com mms ",
-            "Price 1": "R$ 26,90",
-            "Price 2": "R$ 19,90"
+            "Price 2": "R$ 35,90"
         }
     ]
 ]

@@ -9,6 +9,7 @@ img_e = 'images/e.jpeg'
 img_f = 'images/f.jpeg'
 img_g = 'images/g.jpeg'
 img_l = 'images/l.jpg'
+img_l2 = 'images/l2.jpg'
 plano = 'images/plano.jpeg'
 
 

@@ -7,9 +7,22 @@ def countDollarSignNumbers(input_string):
         
     return numberAndDollarSign
 
-# Returns length of string
-def stringLength(input_string):
-    return len(input_string)
+# Returns the result of a string with a dollar sign
+def hasDollarSign(input_string):
+    for i in range(len(input_string) - 1, -1, -1):
+        if input_string[i] == "$":
+            print(i)
+            return True, input_string[:i-1], input_string[i-1:len(input_string)]
+        
+    return False, input_string, ""
+
+# Returns whether a string has at least one number or letter
+def hasLetterorNumber(input_string):
+    for character in input_string:
+        if character.isnumeric() or character.isalpha():
+            return True
+    
+    return False
 
 # Returns whether a string has many numerical values or not
 def hasManyNumbers(input_string):
