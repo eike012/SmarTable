@@ -36,15 +36,21 @@ def checkConfidence(image):
 def getColumnsandPrices(results):
     number_of_columns, number_of_prices = numberColumnsImage(results, kmeans.kmeansOfArray2D((arrayLowerCaseAndNumbers(results))))
 
-    print(f"\nNumber of columns: {number_of_columns}")
+    print(f"\nThe number of columns found is: {number_of_columns}")
+    choice = int(input("\nPress 0 to accept or 1 to type another number: "))
+    if choice:
+        number_of_columns = int(input("\nType how many columns the menu has: "))
     print(f"\nNumber of prices: {number_of_prices}")
+    choice = int(input("\nPress 0 to accept or 1 to type another number: "))
+    if choice:
+        number_of_prices = int(input("\nType how many prices per dish the menu has: "))
 
     return number_of_columns, number_of_prices
 
 # Read the text with EasyOCR and TesseractOCR
 def readText(results, element_array):
     number_of_columns, number_of_prices = getColumnsandPrices(results)
-
+    number_of_columns = 3
     image = Image.open(img)
     width, height = image.size
     part_width = width // number_of_columns
@@ -98,8 +104,8 @@ def numberColumnsImage(results, labels):
             elif labels[j] == "Price":
                 numberPrices += 1
     
-    print(f"\nTotal of prices per line: {pricesPerLine}")
-    print(f"\nTotal of titles per line: {titlesPerLine}")
+    # print(f"\nTotal of prices per line: {pricesPerLine}")
+    # print(f"\nTotal of titles per line: {titlesPerLine}")
 
     titles_mode = statistics.mode(titlesPerLine)
     prices_mode = statistics.mode(pricesPerLine)
@@ -248,12 +254,12 @@ def createJson(array, labels, number_of_prices):
                 continue
             else: 
                 title = array[i]
-        elif labels[i] == "Recipe" and len(array[i]) > 3:
+        elif labels[i] == "Recipe" and title != "" and len(array[i]) > 3:
             recipe += array[i] + " "
         elif labels[i] == "Price" and 3 < len(array[i]) < 10:
+            prices_read = len(prices)
             if prices_read < number_of_prices:
                 prices.append(array[i])
-                prices_read += 1
             else:
                 overread_prices.append(array[i])
         if i == len(array)-1 or (title != "" and recipe != "" and len(prices) != 0 and labels[i+1] == "Title"):

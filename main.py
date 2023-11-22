@@ -14,7 +14,7 @@ plano = 'images/plano.jpeg'
 
 def main():
     choice = 0
-    results, confidence, element_array = ocr.checkConfidence(img_c) 
+    results, confidence, element_array = ocr.checkConfidence(img_l) 
     print(confidence)
 
     # Check whether confidence is above desirable percentage
