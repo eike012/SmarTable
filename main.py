@@ -9,13 +9,14 @@ img_e = 'images/e.jpeg'
 img_f = 'images/f.jpeg'
 img_g = 'images/g.jpeg'
 img_l = 'images/l.jpg'
+img_k = 'images/k.jpg'
 img_l2 = 'images/l2.jpg'
 plano = 'images/plano.jpeg'
 
 
 def main():
     choice = 0
-    results, confidence, element_array = ocr.checkConfidence(img_c) 
+    results, confidence, element_array = ocr.checkConfidence(img_l2) 
     print(confidence)
 
     # Check whether confidence is above desirable percentage
