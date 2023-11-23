@@ -262,14 +262,18 @@ def createJson(array, labels, number_of_prices):
             if len(array[i]) > 10:
                 has_sign, array[i], price_merged = sr.hasDollarSign(array[i])
                 if has_sign:
-                    output, title, recipe, prices, prices_read, overread_prices = createObject(output, title, recipe, prices, number_of_prices, overread_prices)
-                    labels[i] = "Title"
+                    if sr.ratioLowerCase(array[i]) >= 0.5:
+                        labels[i] = "Recipe"
+                    else:
+                        output, title, recipe, prices, prices_read, overread_prices = createObject(output, title, recipe, prices, number_of_prices, overread_prices)
+                        labels[i] = "Title"
                 if len(price_merged) > 3:
                     if prices_read < number_of_prices:
                         prices.append(price_merged)
                     else:
                         overread_prices.append(price_merged)
             if labels[i] == "Title" and len(array[i]) > 3 and not sr.hasManyNumbers(array[i]) and array[i] != "R$":
+                array[i] = sr.removeMarks(array[i])
                 if title != "":
                     if sr.ratioLowerCase(array[i]) == 0:
                         title = array[i]
