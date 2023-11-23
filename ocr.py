@@ -36,15 +36,20 @@ def checkConfidence(image):
 def getColumnsandPrices(results):
     number_of_columns, number_of_prices = numberColumnsImage(results, kmeans.kmeansOfArray2D((arrayLowerCaseAndNumbers(results))))
 
-    print(f"\nNumber of columns: {number_of_columns}")
+    print(f"\nThe number of columns found is: {number_of_columns}")
+    choice = int(input("\nPress 0 to accept or 1 to type another number: "))
+    if choice:
+        number_of_columns = int(input("\nType how many columns the menu has: "))
     print(f"\nNumber of prices: {number_of_prices}")
+    choice = int(input("\nPress 0 to accept or 1 to type another number: "))
+    if choice:
+        number_of_prices = int(input("\nType how many prices per dish the menu has: "))
 
     return number_of_columns, number_of_prices
 
 # Read the text with EasyOCR and TesseractOCR
 def readText(results, element_array):
     number_of_columns, number_of_prices = getColumnsandPrices(results)
-
     image = Image.open(img)
     width, height = image.size
     part_width = width // number_of_columns
@@ -98,8 +103,8 @@ def numberColumnsImage(results, labels):
             elif labels[j] == "Price":
                 numberPrices += 1
     
-    print(f"\nTotal of prices per line: {pricesPerLine}")
-    print(f"\nTotal of titles per line: {titlesPerLine}")
+    # print(f"\nTotal of prices per line: {pricesPerLine}")
+    # print(f"\nTotal of titles per line: {titlesPerLine}")
 
     titles_mode = statistics.mode(titlesPerLine)
     prices_mode = statistics.mode(pricesPerLine)
@@ -230,6 +235,19 @@ def returnData(title, recipe, prices):
     output_data.append(output_dict.copy())
     return output_data
 
+# Create object with all categories 
+def createObject(output, title, recipe, prices, number_of_prices, overread_prices):
+    output_data = returnData(title, recipe, prices)
+    output.append(output_data)
+    title, recipe, prices, prices_read = resetCategories()
+    if len(overread_prices) > 0:
+        index = 0
+        while len(overread_prices) != 0 and index < number_of_prices:
+            prices.append(overread_prices[0])
+            overread_prices.pop(0)
+            index += 1 
+    return output, title, recipe, prices, prices_read, overread_prices
+
 # Create json file to have each item in the menu
 def createJson(array, labels, number_of_prices):
     json_path = "categories.json"
@@ -239,33 +257,41 @@ def createJson(array, labels, number_of_prices):
 
     for i in range(len(array)):
         print(f"{array[i]} = {labels[i]}")
-        if labels[i] == "Title" and len(array[i]) > 3 and not sr.hasManyNumbers(array[i]) and array[i] != "R$":
-            if title != "":
-                if sr.ratioLowerCase(array[i]) == 0:
+        if sr.hasLetterorNumber(array[i]):
+            prices_read = len(prices)
+            if len(array[i]) > 10:
+                has_sign, array[i], price_merged = sr.hasDollarSign(array[i])
+                if has_sign:
+                    if sr.ratioLowerCase(array[i]) >= 0.5:
+                        labels[i] = "Recipe"
+                    else:
+                        output, title, recipe, prices, prices_read, overread_prices = createObject(output, title, recipe, prices, number_of_prices, overread_prices)
+                        labels[i] = "Title"
+                if len(price_merged) > 3:
+                    if prices_read < number_of_prices:
+                        prices.append(price_merged)
+                    else:
+                        overread_prices.append(price_merged)
+            if labels[i] == "Title" and len(array[i]) > 3 and not sr.hasManyNumbers(array[i]) and array[i] != "R$":
+                array[i] = sr.removeMarks(array[i])
+                if title != "":
+                    if sr.ratioLowerCase(array[i]) == 0:
+                        title = array[i]
+                    else:
+                        recipe = array[i] + " "
+                    continue
+                else: 
                     title = array[i]
+            elif labels[i] == "Recipe" and title != "" and len(array[i]) > 3:
+                recipe += array[i] + " "
+            elif labels[i] == "Price" and 3 < len(array[i]) < 10:
+                if prices_read < number_of_prices:
+                    prices.append(array[i])
                 else:
-                    recipe = array[i] + " "
-                continue
-            else: 
-                title = array[i]
-        elif labels[i] == "Recipe" and len(array[i]) > 3:
-            recipe += array[i] + " "
-        elif labels[i] == "Price" and 3 < len(array[i]) < 10:
-            if prices_read < number_of_prices:
-                prices.append(array[i])
-                prices_read += 1
-            else:
-                overread_prices.append(array[i])
-        if i == len(array)-1 or (title != "" and recipe != "" and len(prices) != 0 and labels[i+1] == "Title"):
-            output_data = returnData(title, recipe, prices)
-            output.append(output_data)
-            title, recipe, prices, prices_read = resetCategories()
-            if len(overread_prices) > 0:
-                index = 0
-                while len(overread_prices) != 0 and index < number_of_prices:
-                    prices.append(overread_prices[0])
-                    overread_prices.pop(0)
-                    index += 1                 
+                    overread_prices.append(array[i])
+            if i == len(array)-1 or (title != "" and recipe != "" and len(prices) != 0 and labels[i+1] == "Title"):
+                output, title, recipe, prices, prices_read, overread_prices = createObject(output, title, recipe, prices, number_of_prices, overread_prices)
+                                
 
     with open(json_path, 'w') as json_file:
         json.dump(output, json_file, indent=4, ensure_ascii=False)

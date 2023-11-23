@@ -1,11 +1,1 @@
-#ignore image files
-*.jpg
-*.jpeg
-*.png
-*.gif
-*.bmp
-*.svg
 
-#ignore text based files
-*.txt
-*.csv

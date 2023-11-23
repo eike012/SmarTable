@@ -7,9 +7,33 @@ def countDollarSignNumbers(input_string):
         
     return numberAndDollarSign
 
-# Returns length of string
-def stringLength(input_string):
-    return len(input_string)
+# Returns the result of a string with a dollar sign
+def hasDollarSign(input_string):
+    for i in range(len(input_string) - 1, -1, -1):
+        if input_string[i] == "$":
+            return True, input_string[:i-1], input_string[i-1:len(input_string)]
+        
+    return False, input_string, ""
+
+def removeMarks(input_string):
+    output_string = ""
+
+    marks = [".", "-", "?", "!", "&", ":", ";", "/", "[", "]", "{", "}"]
+    for character in range(len(input_string)):
+        if input_string[character] in marks:
+            continue
+        else:
+            output_string = output_string + input_string[character]
+
+    return output_string 
+
+# Returns whether a string has at least one number or letter
+def hasLetterorNumber(input_string):
+    for character in input_string:
+        if character.isnumeric() or character.isalpha():
+            return True
+    
+    return False
 
 # Returns whether a string has many numerical values or not
 def hasManyNumbers(input_string):
@@ -41,5 +65,7 @@ def testProgram():
     assert countDollarSignNumbers('R$22,00') == 5, 'Erro em countDollarSignNumbers, teste 2'
     assert ratioLowerCase('AAA') == 0.00, 'Erro em ratioLowerCase, teste 3'
     assert countDollarSignNumbers('pizza') == 0.00, 'Erro em countDollarSignNumbers, teste 4'
+    assert removeMarks("Hoje tem trikas.") == "Hoje tem trikas", 'Erro em removeMarks, teste 5'
+    assert removeMarks("Nao. Durma. Na. Aula!") == "Nao Durma Na Aula", 'Erro em removeMarks, teste 6'
 
 testProgram()
