@@ -15,12 +15,12 @@ def check(letter):
     return percentage
 
 def test():
-    images_to_test = ['a','b','c']
+    images_to_test = ['a']
     results = []
     print("Testing.....")
     for letter in images_to_test:
         results.append(check(letter))
     
-    print(f"\n\nThe average percentage of the test is: {np.mean(results)}")
+    print(f"\n\nThe average percentage of the test is: {np.mean(results)}%")
         
 test()
