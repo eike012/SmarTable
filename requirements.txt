@@ -6,3 +6,5 @@ pillow
 pyenchant
 scikit-learn
 nktk
+statistics
+PIL
