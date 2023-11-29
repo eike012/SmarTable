@@ -5,4 +5,4 @@ easyocr
 pillow
 pyenchant
 scikit-learn
-nktk
+
