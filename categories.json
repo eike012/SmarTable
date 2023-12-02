@@ -17,7 +17,7 @@
     ],
     [
         {
-            "Title": "A MODA DO CHEFE",
+            "Title": "À MODA DO CHEFE",
             "Recipe": "Calabresa, mussarela e parmesão ",
             "Price 1": "R$ 33,00",
             "Price 2": "R$ 22,00"
@@ -26,14 +26,14 @@
     [
         {
             "Title": "A MODA DO CLIENTE",
-            "Recipe": "Escolha até 5 ingredientes (exceto Canupiry Original e Carne Seca) ",
-            "Price 1": "R$ 41,00",
-            "Price 2": "R$ 29,00"
+            "Recipe": "Escolha até 5 ingredientes (exceto Catupiry Original e Care Seca) ",
+            "Price 1": "R$ 29,00",
+            "Price 2": "R$ 41,00"
         }
     ],
     [
         {
-            "Title": "ALHO E ÓLEO",
+            "Title": "ALHO E OLEO",
             "Recipe": "Alho, mussarela e parmesão ralado ",
             "Price 1": "R$ 30,00",
             "Price 2": "R$ 22,00"
@@ -74,7 +74,7 @@
         {
             "Title": "BRÓCOLIS",
             "Recipe": "Brócolis, bacon, cebola e mussarela ",
-            "Price 1": "R$31,00",
+            "Price 1": "R$ 31,00",
             "Price 2": "R$ 22,00"
         }
     ],
@@ -82,16 +82,16 @@
         {
             "Title": "CATUPIRY",
             "Recipe": "Queijo tipo Catupiry derretido ",
-            "Price 1": "R$ 21,00",
-            "Price 2": "R$ 30,00"
+            "Price 1": "R$ 30,00",
+            "Price 2": "R$ 21,00"
         }
     ],
     [
         {
             "Title": "LUZITANA",
             "Recipe": "Presunto e mussarela ",
-            "Price 1": "R$ 22,00",
-            "Price 2": "R$ 30,00"
+            "Price 1": "R$ 30,00",
+            "Price 2": "R$22,00"
         }
     ],
     [
@@ -113,56 +113,393 @@
     [
         {
             "Title": "NAPOLITANA",
-            "Recipe": "Ra a a FL Mussarela rodelas de tomate e queijo parmesão ralado pinga os TA! ",
-            "Price 1": "R$ 30,00"
-        }
-    ],
-    [
-        {
-            "Title": "TOSCANA",
-            "Recipe": "Calabresa moída e mussarela ",
-            "Price 1": "R$ 31,00",
-            "Price 2": "R$ 24,00"
+            "Recipe": "Mussarela rodelas de tomate e queijo parmesão ralado TOSCANA 4 Calabresa moida e mussarela ",
+            "Price 1": "R$ 30,00",
+            "Price 2": "R$31,00"
         }
     ],
     [
         {
             "Title": "VERONA",
             "Recipe": "Calabresa moida e catupiry ",
-            "Price 1": "R$31,00",
-            "Price 2": "R$ 23,00"
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 31,00"
         }
     ],
     [
         {
-            "Title": "À MODA DA CASA",
+            "Title": "CASA",
             "Recipe": "Presunto, ovos, bacon e mussarela ",
-            "Price 1": "R$ 33,00",
-            "Price 2": "R$ 24,00"
+            "Price 1": "R$ 23,00",
+            "Price 2": "R$ 33,00"
         }
     ],
     [
         {
             "Title": "ATUM COM CATUPIRY",
-            "Recipe": "Atum, catupiry e cebola ",
-            "Price 1": "R$ 32,00",
-            "Price 2": "R$ 23,00"
+            "Recipe": "Atum, catupiry cebola ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 32,00"
         }
     ],
     [
         {
             "Title": "BAIANA",
-            "Recipe": "e q A DR Mussarela, ovos, calabresa moída e pimenta a em IA ",
+            "Recipe": "DA Mussarela, ovos, calabresa moída e pimenta a o DA ",
+            "Price 1": "R$ 23,00",
+            "Price 2": "R$ 32,00"
+        }
+    ],
+    [
+        {
+            "Title": "CARIOCA",
+            "Recipe": "Ed DRA Presunto, provolone, milho, mussarela e catupiry ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 33,00"
+        }
+    ],
+    [
+        {
+            "Title": "CAIPIRA 1",
+            "Recipe": "Frango desfiado, milho e catupiry ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 24,00"
+        }
+    ],
+    [
+        {
+            "Title": "CAIPIRA 2",
+            "Recipe": "Frango desfiado, milho e mussarela ",
+            "Price 1": "R$ 34,00",
+            "Price 2": "R$ 24,00"
+        }
+    ],
+    [
+        {
+            "Title": "ESCAROLA",
+            "Recipe": "Escarola, bacon e mussarela ",
+            "Price 1": "R$ 34,00",
+            "Price 2": "R$ 23,00"
+        }
+    ],
+    [
+        {
+            "Title": "FRANCESA",
+            "Recipe": "Presunto, palmito, cebola e mussarela ",
+            "Price 1": "R$ 31,00",
+            "Price 2": "R$ 33,00"
+        }
+    ],
+    [
+        {
+            "Title": "FRANGO COM CATUPIRY",
+            "Recipe": "Frango desfiado e catupiry ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 33,00"
+        }
+    ],
+    [
+        {
+            "Title": "GAUCHA",
+            "Recipe": "O la A Lombo canadense, bacon, parmesão e catupiry rap A - COIUI ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 34,00"
+        }
+    ],
+    [
+        {
+            "Title": "JARDINEIRA",
+            "Recipe": "Frango desfiado, catupiry cebola ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 33,00"
+        }
+    ],
+    [
+        {
+            "Title": "LOMBINHO",
+            "Recipe": "Lombo canadense, mussarela e cebola ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$31,00"
+        }
+    ],
+    [
+        {
+            "Title": "NOBRE",
+            "Recipe": "Presunto, frango desfiado e mussarela ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 33,00"
+        }
+    ],
+    [
+        {
+            "Title": "PERUANA",
+            "Recipe": "Atum, mussarela e rodelas de tomate ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 32,00"
+        }
+    ],
+    [
+        {
+            "Title": "PALMITO",
+            "Recipe": "Palmito, cebola e mussarela ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 31,00"
+        }
+    ],
+    [
+        {
+            "Title": "PEPPERONTI",
+            "Recipe": "Mussarela e pepperoni picado ",
+            "Price 1": "R$ 23,00",
+            "Price 2": "R$ 33,00"
+        }
+    ],
+    [
+        {
+            "Title": "PORTUGUESA",
+            "Recipe": "Presunto, palmito, ervilha, ovos, cebola e mussarela ",
+            "Price 1": "R$ 23,00",
+            "Price 2": "R$ 35,00"
+        }
+    ],
+    [
+        {
+            "Title": "DOIS QUEIJOS",
+            "Recipe": "Catupiry e mussarela ",
+            "Price 1": "R$ 25,00",
+            "Price 2": "R$ 23,00"
+        }
+    ],
+    [
+        {
+            "Title": "TRÊS QUEIJOS",
+            "Recipe": "Mussarela, provolone e catupiry ",
+            "Price 1": "R$31,00",
+            "Price 2": "R$31,00"
+        }
+    ],
+    [
+        {
+            "Title": "QUATRO QUEIJOS",
+            "Recipe": "Provolone, mussarela, catupiry e parmesão ",
+            "Price 1": "R$ 23,00",
+            "Price 2": "R$ 33,00"
+        }
+    ],
+    [
+        {
+            "Title": "CINCO QUEIJOS",
+            "Recipe": "Provolone, catupiry, mussarela, parmesão e cheddar aa aaa o Eee ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 34,00"
+        }
+    ],
+    [
+        {
+            "Title": "SICILIANA",
+            "Recipe": "bacon coberto com mussarela Champignon ",
+            "Price 1": "R$ 25,00",
+            "Price 2": "R$ 33,00"
+        }
+    ],
+    [
+        {
+            "Title": "VENEZA",
+            "Recipe": "Atum, palmito, ervilha, ovos, milho, cebola e mussarela ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 25,00"
+        }
+    ],
+    [
+        {
+            "Title": "VEGETARIANA",
+            "Recipe": "Escarola, palmito, champignon, milho, ervilha e catupiry ",
+            "Price 1": "R$ 35,00",
+            "Price 2": "R$ 25,00"
+        }
+    ],
+    [
+        {
+            "Title": "PAULISTA",
+            "Recipe": "Calabresa, cebola e mussarela ",
+            "Price 1": "R$ 34,00",
+            "Price 2": "R$ 24,00"
+        }
+    ],
+    [
+        {
+            "Title": "ROMANESCA",
+            "Recipe": "Mussarela, champignon, presunto e bacon ",
             "Price 1": "R$ 32,00",
             "Price 2": "R$ 24,00"
         }
     ],
     [
         {
-            "Title": "CARIOCA",
-            "Recipe": "EA A O RAT Presunto, provolone, milho, mussarela e catupiry ",
+            "Title": "AMOR PERFEITO",
+            "Recipe": "catupiry, milho verde, presunto, ervilha e cebola ",
             "Price 1": "R$ 33,00",
-            "Price 2": "R$ 24,00"
+            "Price 2": "R$ 33,00"
+        }
+    ],
+    [
+        {
+            "Title": "AMERICANA",
+            "Recipe": "Presunto, ervilha, ovos e mussarela ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 32,00"
+        }
+    ],
+    [
+        {
+            "Title": "PEITO DE PERU",
+            "Recipe": "Peito de peru, mussarela e bacon ",
+            "Price 1": "R$ 23,00",
+            "Price 2": "R$39,00"
+        }
+    ],
+    [
+        {
+            "Title": "GREGA",
+            "Recipe": "na a Presunto, ovos, milho, ervilha, cebola e mussarela ",
+            "Price 1": "R$ 27,00",
+            "Price 2": "R$ 34,00"
+        }
+    ],
+    [
+        {
+            "Title": "PAULISTINHA",
+            "Recipe": "Presunto, atum, cebola e mussarela ",
+            "Price 1": "R$ 25,00",
+            "Price 2": "R$ 33,00"
+        }
+    ],
+    [
+        {
+            "Title": "PALMITO COM CATUPIRY",
+            "Recipe": "Palmito e cebola coberto com catupiry ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 32,00"
+        }
+    ],
+    [
+        {
+            "Title": "VEREDA",
+            "Recipe": "Calabresa, palmito, cebola e musssarela ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 32,00"
+        }
+    ],
+    [
+        {
+            "Title": "PORTUGUESA SIMPLES",
+            "Recipe": "Presunto, ovos, cebola e mussarela ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 32,00"
+        }
+    ],
+    [
+        {
+            "Title": "BAIANA 2",
+            "Recipe": "Calabresa fatiada, cebola, ovo e pimenta calabresa ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 32,00"
+        }
+    ],
+    [
+        {
+            "Title": "FRANGO COM CATUPIRY",
+            "Recipe": "Frango com Catupiry Original ",
+            "Price 1": "R$ 24,00",
+            "Price 2": "R$ 42,00"
+        }
+    ],
+    [
+        {
+            "Title": "CARNE SECA 1",
+            "Recipe": "Carne seca, cebola, pimentão e mussarela ",
+            "Price 1": "R$ 30,00",
+            "Price 2": "R$ 41,00"
+        }
+    ],
+    [
+        {
+            "Title": "CARNE SECA 2",
+            "Recipe": "Carne seca, cebola e catupiry ",
+            "Price 1": "R$ 30,00",
+            "Price 2": "R$41,00"
+        }
+    ],
+    [
+        {
+            "Title": "BANANA",
+            "Recipe": "Banana, mussarela, leite condensado e canela ",
+            "Price 1": "R$30,00",
+            "Price 2": "R$ 34,00"
+        }
+    ],
+    [
+        {
+            "Title": "PRESTÍGIO",
+            "Recipe": "Chocolate, coco ralado coberto com chocolate granulado ",
+            "Price 1": "R$ 25,00",
+            "Price 2": "R$ 34,00"
+        }
+    ],
+    [
+        {
+            "Title": "ROMEU E JULIETA",
+            "Recipe": "Mussarela e goiabada ",
+            "Price 1": "R$ 25,00",
+            "Price 2": "R$ 34,00"
+        }
+    ],
+    [
+        {
+            "Title": "CHOCOLATE",
+            "Recipe": "Chocolate coberto com chocolate granulado ",
+            "Price 1": "R$ 25,00",
+            "Price 2": "R$ 34,00"
+        }
+    ],
+    [
+        {
+            "Title": "CHOCOLATE COM BANANA",
+            "Recipe": "Chocolate e banana ",
+            "Price 1": "R$ 25,00",
+            "Price 2": "R$ 34,00"
+        }
+    ],
+    [
+        {
+            "Title": "CHOCOLATE BRANCO",
+            "Recipe": "Chocolate branco com granulado ",
+            "Price 1": "R$ 25,00",
+            "Price 2": "R$ 34,00"
+        }
+    ],
+    [
+        {
+            "Title": "CONFETE",
+            "Recipe": "Chocolate e confete ",
+            "Price 1": "R$ 25,00",
+            "Price 2": "R$ 35,00"
+        }
+    ],
+    [
+        {
+            "Title": "CHOCOLATE COM MORANGO",
+            "Recipe": "Chocolate e morango ",
+            "Price 1": "R$ 26,00",
+            "Price 2": "R$ 36,00"
+        }
+    ],
+    [
+        {
+            "Title": "NUTELLA",
+            "Recipe": "Nutella ",
+            "Price 1": "R$ 26,00",
+            "Price 2": "R$ 45,00"
         }
     ]
 ]
