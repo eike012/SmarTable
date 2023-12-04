@@ -1,7 +1,7 @@
 import ocr
 import json
 import numpy as np
-import dishcheck as dc
+import dishCheck as dc
 
 def check(letter):
     image = f'images/{letter}.jpg'
