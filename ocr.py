@@ -103,9 +103,6 @@ def numberColumnsImage(results, labels):
             elif labels[j] == "Price":
                 numberPrices += 1
     
-    # print(f"\nTotal of prices per line: {pricesPerLine}")
-    # print(f"\nTotal of titles per line: {titlesPerLine}")
-
     titles_mode = statistics.mode(titlesPerLine)
     prices_mode = statistics.mode(pricesPerLine)
 
@@ -153,13 +150,10 @@ def checkGrammar(text, dic):
     for index, word in enumerate(words):
         if word != '' and not word.isnumeric():
             if  dic.check(word):
-                # print(f"'{word}' is spelled correctly.")
                 pass
             else:
                 suggestions = dic.suggest(word)
                 if suggestions != None:
-                    #print(f"'{word}' is spelled incorrectly. Suggestions: {', '.join(suggestions)}")
-                    # words[index] = suggestions[0]
                     pass
             if word == "RS":
                 words[index] = "R$"
@@ -256,7 +250,6 @@ def createJson(array, labels, number_of_prices):
     overread_prices = []
 
     for i in range(len(array)):
-        print(f"{array[i]} = {labels[i]}")
         if sr.hasLetterorNumber(array[i]):
             prices_read = len(prices)
             if len(array[i]) > 10:

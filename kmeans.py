@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.cluster import KMeans
 
-
+# Gets a list of numbers and splits them into 3 classes
 def kmeansOfArray1D(dataOfBoxes):
     result = np.array(dataOfBoxes).reshape(-1,1)
     kmeans = KMeans(n_clusters=3, random_state=0, n_init="auto").fit(result)
@@ -21,9 +21,10 @@ def kmeansOfArray1D(dataOfBoxes):
             names.append('Recipe')
             recipe += 1
 
-    #print("price, recipe, title:" + str(price) + " " + str(recipe) + " " + str(title) + "\n")
     return names
 
+# Gets an array of points (x, y) and splits them into 3 classes:
+# Title, Recipe and Price.
 def kmeansOfArray2D(dataofBoxes):
     result = dataofBoxes
     kmeans = KMeans(n_clusters=3, random_state=0, n_init="auto").fit(result)
@@ -43,7 +44,6 @@ def kmeansOfArray2D(dataofBoxes):
 
     valueRecipe = labels[indexMaxRatio]
     valuePrice = labels[indexMaxNumbers]
-    valueTitle = 3 - valueRecipe - valuePrice
 
     names = []
     for k in labels:

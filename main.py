@@ -13,11 +13,14 @@ img_k = 'images/k.jpg'
 img_l2 = 'images/l2.jpg'
 plano = 'images/plano.jpeg'
 
-
+#Generates a JSON from an image
+# where each entry is a dish, with
+# price, title and recipe.
+# It also checks the quality of the reading
+# before making the JSON.
 def main():
     choice = 0
-    results, confidence, element_array = ocr.checkConfidence(img_l2) 
-    print(confidence)
+    results, confidence, element_array = ocr.checkConfidence(img_c) # Choose an image
 
     # Check whether confidence is above desirable percentage
     while confidence < 0.8 and choice == 0:

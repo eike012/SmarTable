@@ -15,10 +15,11 @@ def hasDollarSign(input_string):
         
     return False, input_string, ""
 
+# Removes special characters
 def removeMarks(input_string):
     output_string = ""
 
-    marks = [".", "-", "?", "!", "&", ":", ";", "/", "[", "]", "{", "}"]
+    marks = [".", "-", "?", "!", "&", ":", ";", "/", "[", "]", "{", "}"] # characters to remove
     for character in range(len(input_string)):
         if input_string[character] in marks:
             continue
@@ -60,6 +61,7 @@ def ratioLowerCase(input_string):
         return 0
     return lowerCase/totalLetters
 
+# Small test of functions
 def testProgram():
     assert ratioLowerCase('Asaa') == 0.75, 'Erro em ratioLowerCase, teste 1'
     assert countDollarSignNumbers('R$22,00') == 5, 'Erro em countDollarSignNumbers, teste 2'
