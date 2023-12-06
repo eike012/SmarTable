@@ -1,0 +1,9 @@
+# Precision obtained in images.
+# Calculated by the number of JSON entries
+# that matched correctly a dish.
+
+Imagem C: 83%
+Imagem A: 100%
+Imagem B: 81%
+Imagem D: 37,5%
+Imagem G: 70% 
