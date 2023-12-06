@@ -33,23 +33,24 @@ def checkConfidence(image):
     return results, average_confidence, element_array
 
 # Get number of columns of image and prices per dish
-def getColumnsandPrices(results):
+def getColumnsandPrices(results, test):
     number_of_columns, number_of_prices = numberColumnsImage(results, kmeans.kmeansOfArray2D((arrayLowerCaseAndNumbers(results))))
 
-    print(f"\nThe number of columns found is: {number_of_columns}")
-    choice = int(input("\nPress 0 to accept or 1 to type another number: "))
-    if choice:
-        number_of_columns = int(input("\nType how many columns the menu has: "))
-    print(f"\nNumber of prices: {number_of_prices}")
-    choice = int(input("\nPress 0 to accept or 1 to type another number: "))
-    if choice:
-        number_of_prices = int(input("\nType how many prices per dish the menu has: "))
+    if not test:
+        print(f"\nThe number of columns found is: {number_of_columns}")
+        choice = int(input("\nPress 0 to accept or 1 to type another number: "))
+        if choice:
+            number_of_columns = int(input("\nType how many columns the menu has: "))
+        print(f"\nNumber of prices: {number_of_prices}")
+        choice = int(input("\nPress 0 to accept or 1 to type another number: "))
+        if choice:
+            number_of_prices = int(input("\nType how many prices per dish the menu has: "))
 
     return number_of_columns, number_of_prices
 
 # Read the text with EasyOCR and TesseractOCR
-def readText(results, element_array):
-    number_of_columns, number_of_prices = getColumnsandPrices(results)
+def readText(results, element_array, test):
+    number_of_columns, number_of_prices = getColumnsandPrices(results, test)
     image = Image.open(img)
     width, height = image.size
     part_width = width // number_of_columns
@@ -68,7 +69,8 @@ def readText(results, element_array):
         arrayMinusculo = arrayLowerCaseAndNumbers(element_array)
         kmean = kmean + kmeans.kmeansOfArray2D(arrayMinusculo)
 
-    createJson(elements, kmean, number_of_prices)
+    categories_array = createJson(elements, kmean, number_of_prices)
+    return categories_array
 
 # Calculate the number of columns within a menu
 def numberColumnsImage(results, labels):
@@ -102,7 +104,7 @@ def numberColumnsImage(results, labels):
                 lastTitle = j
             elif labels[j] == "Price":
                 numberPrices += 1
-    
+
     titles_mode = statistics.mode(titlesPerLine)
     prices_mode = statistics.mode(pricesPerLine)
 
@@ -288,6 +290,8 @@ def createJson(array, labels, number_of_prices):
 
     with open(json_path, 'w') as json_file:
         json.dump(output, json_file, indent=4, ensure_ascii=False)
+
+    return output
 
 # Return an array with a tuple = {ratio of lower case letters, quantity of numbers}
 # for each box read by ocr

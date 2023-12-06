@@ -1,17 +1,17 @@
 import ocr
 
 img_a = 'images/a.jpg'
-img_alemao = 'images/alemao.jpeg'
+img_alemao = 'images/alemao.jpg'
 img_b = 'images/b.jpg'
 img_c = 'images/c.jpg'
-img_d = 'images/d.jpeg'
-img_e = 'images/e.jpeg'
-img_f = 'images/f.jpeg'
-img_g = 'images/g.jpeg'
+img_d = 'images/d.jpg'
+img_e = 'images/e.jpg'
+img_f = 'images/f.jpg'
+img_g = 'images/g.jpg'
 img_l = 'images/l.jpg'
 img_k = 'images/k.jpg'
 img_l2 = 'images/l2.jpg'
-plano = 'images/plano.jpeg'
+plano = 'images/plano.jpg'
 
 #Generates a JSON from an image
 # where each entry is a dish, with
@@ -33,7 +33,7 @@ def main():
         else:
             choice = 1
     
-    ocr.readText(results, element_array)
+    ocr.readText(results, element_array, False)
     
         
 if __name__ == "__main__":

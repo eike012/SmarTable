@@ -1,0 +1,168 @@
+[
+    [
+        {
+            "Title": "CALABRESA",
+            "Recipe": "Calabresa com rodelas de cebola ",
+            "Price 1": "R$ 21,00",
+            "Price 2": "R$ 29,00"
+        }
+    ],
+    [
+        {
+            "Title": "MUSSARELA",
+            "Recipe": "Mussarela com rodelas de tomate ",
+            "Price 1": "R$ 21,00",
+            "Price 2": "R$ 29,00"
+        }
+    ],
+    [
+        {
+            "Title": "A MODA DO CHEFE",
+            "Recipe": "Calabresa, mussarela e parmesão ",
+            "Price 1": "R$ 33,00",
+            "Price 2": "R$ 22,00"
+        }
+    ],
+    [
+        {
+            "Title": "A MODA DO CLIENTE",
+            "Recipe": "Escolha até 5 ingredientes (exceto Canupiry Original e Carne Seca) ",
+            "Price 1": "R$ 41,00",
+            "Price 2": "R$ 29,00"
+        }
+    ],
+    [
+        {
+            "Title": "ALHO E ÓLEO",
+            "Recipe": "Alho, mussarela e parmesão ralado ",
+            "Price 1": "R$ 30,00",
+            "Price 2": "R$ 22,00"
+        }
+    ],
+    [
+        {
+            "Title": "ATUM",
+            "Recipe": "Atum com rodelas de cebola ",
+            "Price 1": "R$ 31,00",
+            "Price 2": "R$ 22,00"
+        }
+    ],
+    [
+        {
+            "Title": "BACON",
+            "Recipe": "Bacon, fatias de cebola e mussarela ",
+            "Price 1": "R$ 33,00",
+            "Price 2": "R$ 22,00"
+        }
+    ],
+    [
+        {
+            "Title": "BAURU",
+            "Recipe": "Presunto, mussarela e rodelas de tomate ",
+            "Price 1": "R$ 30,00"
+        }
+    ],
+    [
+        {
+            "Title": "BRASILEIRA",
+            "Recipe": "Calabresa moida, ovos, cebola e mussarela ",
+            "Price 1": "R$ 32,00",
+            "Price 2": "R$ 24,00"
+        }
+    ],
+    [
+        {
+            "Title": "BRÓCOLIS",
+            "Recipe": "Brócolis, bacon, cebola e mussarela ",
+            "Price 1": "R$31,00",
+            "Price 2": "R$ 22,00"
+        }
+    ],
+    [
+        {
+            "Title": "CATUPIRY",
+            "Recipe": "Queijo tipo Catupiry derretido ",
+            "Price 1": "R$ 21,00",
+            "Price 2": "R$ 30,00"
+        }
+    ],
+    [
+        {
+            "Title": "LUZITANA",
+            "Recipe": "Presunto e mussarela ",
+            "Price 1": "R$ 22,00",
+            "Price 2": "R$ 30,00"
+        }
+    ],
+    [
+        {
+            "Title": "MARGHERITA",
+            "Recipe": "Mussarela, manjericão e queijo parmesão ",
+            "Price 1": "R$ 30,00",
+            "Price 2": "R$ 22,00"
+        }
+    ],
+    [
+        {
+            "Title": "MILHO VERDE",
+            "Recipe": "Milho verde coberto com mussarela ",
+            "Price 1": "R$ 31,00",
+            "Price 2": "R$ 22,00"
+        }
+    ],
+    [
+        {
+            "Title": "NAPOLITANA",
+            "Recipe": "Ra a a FL Mussarela rodelas de tomate e queijo parmesão ralado pinga os TA! ",
+            "Price 1": "R$ 30,00"
+        }
+    ],
+    [
+        {
+            "Title": "TOSCANA",
+            "Recipe": "Calabresa moída e mussarela ",
+            "Price 1": "R$ 31,00",
+            "Price 2": "R$ 24,00"
+        }
+    ],
+    [
+        {
+            "Title": "VERONA",
+            "Recipe": "Calabresa moida e catupiry ",
+            "Price 1": "R$31,00",
+            "Price 2": "R$ 23,00"
+        }
+    ],
+    [
+        {
+            "Title": "À MODA DA CASA",
+            "Recipe": "Presunto, ovos, bacon e mussarela ",
+            "Price 1": "R$ 33,00",
+            "Price 2": "R$ 24,00"
+        }
+    ],
+    [
+        {
+            "Title": "ATUM COM CATUPIRY",
+            "Recipe": "Atum, catupiry e cebola ",
+            "Price 1": "R$ 32,00",
+            "Price 2": "R$ 23,00"
+        }
+    ],
+    [
+        {
+            "Title": "BAIANA",
+            "Recipe": "e q A DR Mussarela, ovos, calabresa moída e pimenta a em IA ",
+            "Price 1": "R$ 32,00",
+            "Price 2": "R$ 24,00"
+        }
+    ],
+    [
+        {
+            "Title": "CARIOCA",
+            "Recipe": "EA A O RAT Presunto, provolone, milho, mussarela e catupiry ",
+            "Price 1": "R$ 33,00",
+            "Price 2": "R$ 24,00"
+        }
+    ]
+]
